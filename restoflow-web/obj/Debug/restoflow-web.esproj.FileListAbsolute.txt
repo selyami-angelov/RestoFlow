@@ -1,0 +1,2 @@
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\restoflow-web\obj\Debug\restoflow-web.esproj.SuggestedBindingRedirects.cache
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\restoflow-web\obj\Debug\restoflow-web.esproj.CoreCompileInputs.cache

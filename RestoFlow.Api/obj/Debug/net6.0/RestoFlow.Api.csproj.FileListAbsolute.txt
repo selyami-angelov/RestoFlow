@@ -75,3 +75,6 @@ C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\r
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.pdb
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.genruntimeconfig.cache
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\ref\RestoFlow.Api.dll
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
