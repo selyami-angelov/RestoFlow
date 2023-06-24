@@ -16,15 +16,16 @@ namespace RestoFlow.Api.Controllers
     public class AccountController : ControllerBase
     {
 
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly ILogger<AccountController> logger;
         private readonly IMapper mapper;
+        private readonly ILogger<AccountController> logger;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly RestoFlowDbContext context;
         private readonly TokenService tokenService;
 
-        public AccountController(UserManager<ApplicationUser> _userManager,
-            ILogger<AccountController> _logger,
+        public AccountController(
             IMapper _mapper,
+            ILogger<AccountController> _logger,
+            UserManager<ApplicationUser> _userManager,
             RestoFlowDbContext _context,
             TokenService _tokenService)
         {
@@ -112,39 +113,6 @@ namespace RestoFlow.Api.Controllers
                 Token = accessToken,
             });
         }
-
-
-        //[HttpPost]
-        //[Route("login")]
-        //public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
-        //{
-        //    logger.LogInformation($"lOGIN Attempt for {loginDTO.Email}");
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-
-        //    }
-
-        //    try
-        //    {
-        //        var result = await signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, false, false);
-
-        //        if (!result.Succeeded)
-        //        {
-        //            return Unauthorized(loginDTO);
-        //        }
-
-        //        return Accepted();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        logger.LogError(ex, $"Something Went Wrong in the {nameof(Login)}");
-        //        return Problem($"Something Went Wrong in the {nameof(Login)}", statusCode: 500);
-        //        throw;
-        //    }
-
-        //}
 
     }
 }

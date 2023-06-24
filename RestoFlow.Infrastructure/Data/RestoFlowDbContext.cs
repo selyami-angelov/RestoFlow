@@ -14,6 +14,7 @@ namespace RestoFlow.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<OccupiedTable>()
                 .HasKey(ot => new { ot.TableId, ot.UserId, ot.OrderId });
@@ -42,7 +43,8 @@ namespace RestoFlow.Infrastructure.Data
                 .HasForeignKey(p => p.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            base.OnModelCreating(modelBuilder);
+            DbSeeder.SeedCategories(modelBuilder);
+            DbSeeder.SeedProducts(modelBuilder);
 
         }
 
