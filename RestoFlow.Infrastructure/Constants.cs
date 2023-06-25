@@ -32,11 +32,10 @@
 
         public class Table
         {
-            public const int TableNameMinLength = 2;
-            public const int TableNameMaxLength = 50;
 
-            public const string TableNameRequiredErrorMessage = "Table name is required.";
-            public const string TableNameLengthErrorMessage = "Table name must be between {0} and {1} characters long.";
+            public const string TableNumberRequiredErrorMessage = "Table name is required.";
+            public const string TableSeatsRequiredErrorMessage = "Table seats is required.";
+
         }
 
         public class Order

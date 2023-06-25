@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
+using RestoFlow.Infrastructure.Configuration;
 using RestoFlow.Infrastructure.Data.Models;
 
 namespace RestoFlow.Infrastructure.Data
@@ -16,35 +16,12 @@ namespace RestoFlow.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<OccupiedTable>()
-                .HasKey(ot => new { ot.TableId, ot.UserId, ot.OrderId });
-
-            modelBuilder.Entity<OccupiedTable>()
-                .HasOne(ot => ot.Table)
-                .WithMany()
-                .HasForeignKey(ot => ot.TableId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<OccupiedTable>()
-                .HasOne(ot => ot.User)
-                .WithMany()
-                .HasForeignKey(ot => ot.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<OccupiedTable>()
-                .HasOne(ot => ot.Order)
-                .WithMany()
-                .HasForeignKey(ot => ot.OrderId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Product>()
-                .HasOne(p => p.Category)
-                .WithMany(c => c.Products)
-                .HasForeignKey(p => p.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
+            FluenAPI.ConfigureTables(modelBuilder);
+            FluenAPI.ConfigureProducts(modelBuilder);
 
             DbSeeder.SeedCategories(modelBuilder);
             DbSeeder.SeedProducts(modelBuilder);
+            DbSeeder.SeedTables(modelBuilder);
 
         }
 

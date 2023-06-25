@@ -15,7 +15,43 @@ namespace RestoFlow.Infrastructure.Data
                 new Category { Id = 4, Name = "Salads" }
             );
 
-            
+
+        }
+
+        public static void SeedTables(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Table>().HasData(
+                new Table { Id = 1, TableNumber = 1, Seats = 4 },
+                new Table { Id = 2, TableNumber = 2, Seats = 6 },
+                new Table { Id = 3, TableNumber = 3, Seats = 2 },
+                new Table { Id = 4, TableNumber = 4, Seats = 8 },
+                new Table { Id = 5, TableNumber = 5, Seats = 4 },
+                new Table { Id = 6, TableNumber = 6, Seats = 6 },
+                new Table { Id = 7, TableNumber = 7, Seats = 2 },
+                new Table { Id = 8, TableNumber = 8, Seats = 4 },
+                new Table { Id = 9, TableNumber = 9, Seats = 6 },
+                new Table { Id = 10, TableNumber = 10, Seats = 2 },
+                new Table { Id = 11, TableNumber = 11, Seats = 4 },
+                new Table { Id = 12, TableNumber = 12, Seats = 6 },
+                new Table { Id = 13, TableNumber = 13, Seats = 2 },
+                new Table { Id = 14, TableNumber = 14, Seats = 4 },
+                new Table { Id = 15, TableNumber = 15, Seats = 6 },
+                new Table { Id = 16, TableNumber = 16, Seats = 2 },
+                new Table { Id = 17, TableNumber = 17, Seats = 4 },
+                new Table { Id = 18, TableNumber = 18, Seats = 6 },
+                new Table { Id = 19, TableNumber = 19, Seats = 2 },
+                new Table { Id = 20, TableNumber = 20, Seats = 4 },
+                new Table { Id = 21, TableNumber = 21, Seats = 6 },
+                new Table { Id = 22, TableNumber = 22, Seats = 2 },
+                new Table { Id = 23, TableNumber = 23, Seats = 4 },
+                new Table { Id = 24, TableNumber = 24, Seats = 6 },
+                new Table { Id = 25, TableNumber = 25, Seats = 2 },
+                new Table { Id = 26, TableNumber = 26, Seats = 4 },
+                new Table { Id = 27, TableNumber = 27, Seats = 6 },
+                new Table { Id = 28, TableNumber = 28, Seats = 2 },
+                new Table { Id = 29, TableNumber = 29, Seats = 4 },
+                new Table { Id = 30, TableNumber = 30, Seats = 6 }
+            );
         }
 
         public static void SeedProducts(ModelBuilder modelBuilder)

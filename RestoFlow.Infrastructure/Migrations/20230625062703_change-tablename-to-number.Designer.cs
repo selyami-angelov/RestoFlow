@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestoFlow.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RestoFlow.Infrastructure.Data;
 namespace RestoFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(RestoFlowDbContext))]
-    partial class RestoFlowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230625062703_change-tablename-to-number")]
+    partial class changetablenametonumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -718,197 +720,12 @@ namespace RestoFlow.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Seats")
-                        .HasColumnType("int");
-
                     b.Property<int>("TableNumber")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Tables");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Seats = 4,
-                            TableNumber = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Seats = 6,
-                            TableNumber = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Seats = 2,
-                            TableNumber = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Seats = 8,
-                            TableNumber = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Seats = 4,
-                            TableNumber = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Seats = 6,
-                            TableNumber = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Seats = 2,
-                            TableNumber = 7
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Seats = 4,
-                            TableNumber = 8
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Seats = 6,
-                            TableNumber = 9
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Seats = 2,
-                            TableNumber = 10
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Seats = 4,
-                            TableNumber = 11
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Seats = 6,
-                            TableNumber = 12
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Seats = 2,
-                            TableNumber = 13
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Seats = 4,
-                            TableNumber = 14
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Seats = 6,
-                            TableNumber = 15
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Seats = 2,
-                            TableNumber = 16
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Seats = 4,
-                            TableNumber = 17
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Seats = 6,
-                            TableNumber = 18
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Seats = 2,
-                            TableNumber = 19
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Seats = 4,
-                            TableNumber = 20
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Seats = 6,
-                            TableNumber = 21
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Seats = 2,
-                            TableNumber = 22
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Seats = 4,
-                            TableNumber = 23
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Seats = 6,
-                            TableNumber = 24
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Seats = 2,
-                            TableNumber = 25
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Seats = 4,
-                            TableNumber = 26
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Seats = 6,
-                            TableNumber = 27
-                        },
-                        new
-                        {
-                            Id = 28,
-                            Seats = 2,
-                            TableNumber = 28
-                        },
-                        new
-                        {
-                            Id = 29,
-                            Seats = 4,
-                            TableNumber = 29
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Seats = 6,
-                            TableNumber = 30
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

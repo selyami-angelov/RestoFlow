@@ -9,9 +9,10 @@ namespace RestoFlow.Infrastructure.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = TableNameRequiredErrorMessage)]
-        [StringLength(TableNameMaxLength, MinimumLength = TableNameMinLength,
-            ErrorMessage = TableNameLengthErrorMessage)]
-        public string TableName { get; set; } = null!;
+        [Required(ErrorMessage = TableNumberRequiredErrorMessage)]
+        public int TableNumber { get; set; }
+
+        [Required(ErrorMessage = TableSeatsRequiredErrorMessage)]
+        public int Seats { get; set; }         
     }
 }

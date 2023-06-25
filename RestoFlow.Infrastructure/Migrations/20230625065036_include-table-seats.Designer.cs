@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestoFlow.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RestoFlow.Infrastructure.Data;
 namespace RestoFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(RestoFlowDbContext))]
-    partial class RestoFlowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230625065036_include-table-seats")]
+    partial class includetableseats
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -732,182 +734,242 @@ namespace RestoFlow.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Seats = 4,
-                            TableNumber = 1
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 2,
-                            Seats = 6,
-                            TableNumber = 2
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 3,
-                            Seats = 2,
-                            TableNumber = 3
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 4,
-                            Seats = 8,
-                            TableNumber = 4
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 5,
-                            Seats = 4,
-                            TableNumber = 5
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 6,
-                            Seats = 6,
-                            TableNumber = 6
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 7,
-                            Seats = 2,
-                            TableNumber = 7
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 8,
-                            Seats = 4,
-                            TableNumber = 8
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 9,
-                            Seats = 6,
-                            TableNumber = 9
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 10,
-                            Seats = 2,
-                            TableNumber = 10
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 11,
-                            Seats = 4,
-                            TableNumber = 11
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 12,
-                            Seats = 6,
-                            TableNumber = 12
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 13,
-                            Seats = 2,
-                            TableNumber = 13
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 14,
-                            Seats = 4,
-                            TableNumber = 14
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 15,
-                            Seats = 6,
-                            TableNumber = 15
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 16,
-                            Seats = 2,
-                            TableNumber = 16
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 17,
-                            Seats = 4,
-                            TableNumber = 17
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 18,
-                            Seats = 6,
-                            TableNumber = 18
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 19,
-                            Seats = 2,
-                            TableNumber = 19
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 20,
-                            Seats = 4,
-                            TableNumber = 20
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 21,
-                            Seats = 6,
-                            TableNumber = 21
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 22,
-                            Seats = 2,
-                            TableNumber = 22
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 23,
-                            Seats = 4,
-                            TableNumber = 23
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 24,
-                            Seats = 6,
-                            TableNumber = 24
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 25,
-                            Seats = 2,
-                            TableNumber = 25
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 26,
-                            Seats = 4,
-                            TableNumber = 26
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 27,
-                            Seats = 6,
-                            TableNumber = 27
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 28,
-                            Seats = 2,
-                            TableNumber = 28
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 29,
-                            Seats = 4,
-                            TableNumber = 29
+                            Seats = 0,
+                            TableNumber = 0
                         },
                         new
                         {
                             Id = 30,
-                            Seats = 6,
-                            TableNumber = 30
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Seats = 0,
+                            TableNumber = 0
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Seats = 0,
+                            TableNumber = 0
                         });
                 });
 
