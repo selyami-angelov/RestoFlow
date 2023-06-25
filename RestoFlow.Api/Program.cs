@@ -20,7 +20,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
-    
+
 })
     .AddEntityFrameworkStores<RestoFlowDbContext>()
     .AddDefaultTokenProviders();

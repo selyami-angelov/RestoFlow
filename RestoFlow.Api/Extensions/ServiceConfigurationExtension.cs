@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 using RestoFlow.Api.Mappings;
+
+using System.Reflection;
 
 namespace RestoFlow.Api.Extensions
 {
@@ -22,7 +25,12 @@ namespace RestoFlow.Api.Extensions
 
             services.AddSwaggerGen(option =>
             {
-                option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+                option.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "RestoFlow API",
+                    Description = "An ASP.NET Core Web API for RestoFlow",
+                });
                 option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
@@ -46,6 +54,11 @@ namespace RestoFlow.Api.Extensions
                         new string[]{}
                     }
                 });
+
+                // using System.Reflection;
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
             });
 
             return services;
