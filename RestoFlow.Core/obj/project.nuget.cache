@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "qkc62UPNJc8SQap2/S00F1y5eITd81DdhuvMuDoN4I2E9UK1COsEgc4DAIt5jjM/GiIrODMMiP8CjfHdSl+eQg==",
+  "dgSpecHash": "aHuRrYq2tC7TF021ObHGjWWsC/VJ+xNLmbvwd5lxthEdSDbjXdjvUivQAsa6+3xIA1Sp0RG8ScO9JccsjLgs0Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\sange\\Desktop\\GithubProjects\\RestoFlow\\RestoFlow.Core\\RestoFlow.Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\sange\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\sange\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.15\\microsoft.aspnetcore.cryptography.internal.6.0.15.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.15\\microsoft.aspnetcore.cryptography.keyderivation.6.0.15.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.15\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.15.nupkg.sha512",
-    "C:\\Users\\sange\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\sange\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.15\\microsoft.entityframeworkcore.6.0.15.nupkg.sha512",
