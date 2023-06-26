@@ -1,5 +1,4 @@
-﻿using RestoFlow.Core.Models;
-
+﻿using RestoFlow.Core.Models.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace RestoFlow.Core.Contracts
     {
         Task<List<ProductDTO>> GetAllProducts();
         Task<ProductDTO> GetProductById(int id);
-        Task<ProductDTO> CreateProduct(ProductDTO productDto);
+        Task<ProductDTO> CreateProduct(ProductCreateDTO productDto);
         Task<ProductDTO> UpdateProduct(int id, ProductDTO productDto);
         Task<ProductDTO> DeleteProduct(int id);
     }

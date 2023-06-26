@@ -2,9 +2,7 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-using RestoFlow.Core.Models;
+using RestoFlow.Core.Models.User;
 using RestoFlow.Core.Services;
 using RestoFlow.Infrastructure.Data;
 using RestoFlow.Infrastructure.Data.Models;
@@ -39,7 +37,7 @@ namespace RestoFlow.Api.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] UserDTO model)
+        public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
             logger.LogInformation($"Registration Attempt for {model.Email}");
 
@@ -55,7 +53,7 @@ namespace RestoFlow.Api.Controllers
                 var user = mapper.Map<ApplicationUser>(model);
                 user.Role = role;
                 user.RoleId = role.Id;
-                user.UserName = "TestUser1";
+                user.UserName = model.Email;
 
                 var result = await userManager.CreateAsync(user, model.Password);
 

@@ -2,7 +2,7 @@
 using AutoMapper;
 
 using RestoFlow.Core.Contracts;
-using RestoFlow.Core.Models;
+using RestoFlow.Core.Models.Product;
 using RestoFlow.Infrastructure.Data.Models;
 
 namespace RestoFlow.Core.Services
@@ -15,11 +15,12 @@ namespace RestoFlow.Core.Services
         public ProductService(IRepository _repository, IMapper _mapper)
         {
             repository = _repository;
+            mapper = _mapper;
         }
 
         public async Task<List<ProductDTO>> GetAllProducts()
         {
-            var products = repository.All<Product>().ToList();
+            var products = repository.All<Product>().Where(p => !p.IsDeleted);
             return products.Select(product => mapper.Map<ProductDTO>(product)).ToList();
         }
 
@@ -29,12 +30,13 @@ namespace RestoFlow.Core.Services
             return mapper.Map<ProductDTO>(product);
         }
 
-        public async Task<ProductDTO> CreateProduct(ProductDTO productDto)
+        public async Task<ProductDTO> CreateProduct(ProductCreateDTO productDto)
         {
             var product = mapper.Map<Product>(productDto);
             await repository.AddAsync<Product>(product);
             await repository.SaveChangesAsync();
-            return productDto;
+            var createdProductDto = mapper.Map<ProductDTO>(product);
+            return createdProductDto;
         }
 
         public async Task<ProductDTO> UpdateProduct(int id, ProductDTO productDto)
@@ -69,5 +71,6 @@ namespace RestoFlow.Core.Services
 
             return mapper.Map<ProductDTO>(existingProduct);
         }
+
     }
 }

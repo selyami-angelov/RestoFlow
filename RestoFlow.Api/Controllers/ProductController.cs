@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
-using RestoFlow.Core.Models;
-
+using RestoFlow.Core.Models.Product;
 
 namespace RestoFlow.Api.Controllers
 {
@@ -51,7 +50,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="productDto">The product data.</param>
         /// <returns>The created product.</returns>
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(ProductDTO productDto)
+        public async Task<IActionResult> CreateProduct(ProductCreateDTO productDto)
         {
             if (!ModelState.IsValid)
             {
@@ -69,7 +68,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="productDto">The updated product data.</param>
         /// <returns>The updated product.</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(int id, ProductDTO productDto)
+        public async Task<IActionResult> UpdateProduct(int id, ProductEditDTO productDto)
         {
             if (!ModelState.IsValid)
             {

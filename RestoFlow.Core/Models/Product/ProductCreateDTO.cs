@@ -1,15 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 using static RestoFlow.Infrastructure.Constants.Product;
 
-namespace RestoFlow.Infrastructure.Data.Models
-{
-    public class Product
-    {
-        [Key]
-        public int Id { get; set; }
 
+namespace RestoFlow.Core.Models.Product
+{
+    public class ProductCreateDTO
+    {
         [Required(ErrorMessage = ProductNameRequiredErrorMessage)]
         [StringLength(ProductNameMaxLength, MinimumLength = ProductNameMinLength,
             ErrorMessage = ProductNameLengthErrorMessage)]
@@ -25,14 +22,7 @@ namespace RestoFlow.Infrastructure.Data.Models
         [Required(ErrorMessage = ProductCategoryIdRequiredErrorMessage)]
         public int CategoryId { get; set; }
 
-        [ForeignKey(nameof(CategoryId))]
-        public Category Category { get; set; } = null!;
-
         [Required]
         public string Img { get; set; } = null!;
-
-        public bool IsDeleted { get; set; } = false;
-
     }
 }
-
