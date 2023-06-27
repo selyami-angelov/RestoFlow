@@ -98,7 +98,7 @@ namespace RestoFlow.Api.Controllers
                 return NotFound();
             }
 
-            return NoContent();
+            return Ok(deletedProduct);
         }
     }
 }

@@ -13,6 +13,9 @@ namespace RestoFlow.Infrastructure.Data.Models
         public int TableNumber { get; set; }
 
         [Required(ErrorMessage = TableSeatsRequiredErrorMessage)]
-        public int Seats { get; set; }         
+        public int Seats { get; set; }
+
+        public List<OccupiedTable> OccupiedTables { get; set; } = null!;
+        public List<ReservationTable> ReservationTables { get; set; } = null!;
     }
 }

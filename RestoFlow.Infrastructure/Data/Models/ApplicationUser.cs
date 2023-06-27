@@ -23,5 +23,7 @@ namespace RestoFlow.Infrastructure.Data.Models
         [ForeignKey(nameof(RoleId))]
         public Role Role { get; set; } = null!;
 
+        public List<OccupiedTable> OccupiedTables { get; set; } = null!;
+
     }
 }

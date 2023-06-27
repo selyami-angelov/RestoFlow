@@ -293,6 +293,68 @@ namespace RestoFlow.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("OccupiedTables");
+
+                    b.HasData(
+                        new
+                        {
+                            TableId = 1,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 1
+                        },
+                        new
+                        {
+                            TableId = 2,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 2
+                        },
+                        new
+                        {
+                            TableId = 3,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 3
+                        },
+                        new
+                        {
+                            TableId = 4,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 4
+                        },
+                        new
+                        {
+                            TableId = 5,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 5
+                        },
+                        new
+                        {
+                            TableId = 6,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 6
+                        },
+                        new
+                        {
+                            TableId = 7,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 7
+                        },
+                        new
+                        {
+                            TableId = 8,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 8
+                        },
+                        new
+                        {
+                            TableId = 9,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 9
+                        },
+                        new
+                        {
+                            TableId = 10,
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                            OrderId = 10
+                        });
                 });
 
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Order", b =>
@@ -344,7 +406,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7477),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6416),
                             Info = "Order 1 information",
                             IsServed = false,
                             ProductId = 1,
@@ -354,7 +416,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7478),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6418),
                             Info = "Order 2 information",
                             IsServed = false,
                             ProductId = 2,
@@ -364,7 +426,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7479),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6420),
                             Info = "Order 3 information",
                             IsServed = false,
                             ProductId = 3,
@@ -374,7 +436,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 4,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7480),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6421),
                             Info = "Order 4 information",
                             IsServed = false,
                             ProductId = 4,
@@ -384,7 +446,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 5,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7481),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6423),
                             Info = "Order 5 information",
                             IsServed = false,
                             ProductId = 5,
@@ -394,7 +456,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 6,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7482),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6424),
                             Info = "Order 6 information",
                             IsServed = false,
                             ProductId = 6,
@@ -404,7 +466,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 7,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7483),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6426),
                             Info = "Order 7 information",
                             IsServed = false,
                             ProductId = 7,
@@ -414,7 +476,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 8,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7484),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6427),
                             Info = "Order 8 information",
                             IsServed = false,
                             ProductId = 8,
@@ -424,7 +486,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 9,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7484),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6429),
                             Info = "Order 9 information",
                             IsServed = false,
                             ProductId = 9,
@@ -434,7 +496,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 10,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7485),
+                            CreatedDate = new DateTime(2023, 6, 27, 10, 44, 10, 386, DateTimeKind.Utc).AddTicks(6430),
                             Info = "Order 10 information",
                             IsServed = false,
                             ProductId = 10,
@@ -839,6 +901,183 @@ namespace RestoFlow.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Reservation", b =>
+                {
+                    b.Property<int>("ReservationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservationId"), 1L, 1);
+
+                    b.Property<bool>("IsCancelled")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PartySize")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ReservationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reservations");
+
+                    b.HasData(
+                        new
+                        {
+                            ReservationId = 1,
+                            IsCancelled = false,
+                            PartySize = 4,
+                            ReservationDate = new DateTime(2023, 6, 28, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6485),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 2,
+                            IsCancelled = false,
+                            PartySize = 6,
+                            ReservationDate = new DateTime(2023, 6, 29, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6533),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 3,
+                            IsCancelled = false,
+                            PartySize = 2,
+                            ReservationDate = new DateTime(2023, 6, 30, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6537),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 4,
+                            IsCancelled = false,
+                            PartySize = 5,
+                            ReservationDate = new DateTime(2023, 7, 1, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6541),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 5,
+                            IsCancelled = false,
+                            PartySize = 3,
+                            ReservationDate = new DateTime(2023, 7, 2, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6545),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 6,
+                            IsCancelled = false,
+                            PartySize = 8,
+                            ReservationDate = new DateTime(2023, 7, 3, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6549),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 7,
+                            IsCancelled = false,
+                            PartySize = 2,
+                            ReservationDate = new DateTime(2023, 7, 4, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6552),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 8,
+                            IsCancelled = false,
+                            PartySize = 4,
+                            ReservationDate = new DateTime(2023, 7, 5, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6556),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 9,
+                            IsCancelled = false,
+                            PartySize = 6,
+                            ReservationDate = new DateTime(2023, 7, 6, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6560),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        },
+                        new
+                        {
+                            ReservationId = 10,
+                            IsCancelled = false,
+                            PartySize = 3,
+                            ReservationDate = new DateTime(2023, 7, 7, 13, 44, 10, 386, DateTimeKind.Local).AddTicks(6563),
+                            UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
+                        });
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.ReservationTable", b =>
+                {
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TableId", "ReservationId");
+
+                    b.HasIndex("ReservationId");
+
+                    b.ToTable("ReservationTable");
+
+                    b.HasData(
+                        new
+                        {
+                            TableId = 1,
+                            ReservationId = 1
+                        },
+                        new
+                        {
+                            TableId = 2,
+                            ReservationId = 2
+                        },
+                        new
+                        {
+                            TableId = 3,
+                            ReservationId = 3
+                        },
+                        new
+                        {
+                            TableId = 4,
+                            ReservationId = 4
+                        },
+                        new
+                        {
+                            TableId = 5,
+                            ReservationId = 5
+                        },
+                        new
+                        {
+                            TableId = 6,
+                            ReservationId = 6
+                        },
+                        new
+                        {
+                            TableId = 7,
+                            ReservationId = 7
+                        },
+                        new
+                        {
+                            TableId = 8,
+                            ReservationId = 8
+                        },
+                        new
+                        {
+                            TableId = 9,
+                            ReservationId = 9
+                        },
+                        new
+                        {
+                            TableId = 10,
+                            ReservationId = 10
+                        });
+                });
+
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -1123,19 +1362,19 @@ namespace RestoFlow.Infrastructure.Migrations
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.OccupiedTable", b =>
                 {
                     b.HasOne("RestoFlow.Infrastructure.Data.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OccupiedTables")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("RestoFlow.Infrastructure.Data.Models.Table", "Table")
-                        .WithMany()
+                        .WithMany("OccupiedTables")
                         .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("RestoFlow.Infrastructure.Data.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("OccupiedTables")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1183,9 +1422,61 @@ namespace RestoFlow.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Reservation", b =>
+                {
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.ReservationTable", b =>
+                {
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Reservation", "Reservation")
+                        .WithMany("ReservationTables")
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Table", "Table")
+                        .WithMany("ReservationTables")
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Reservation");
+
+                    b.Navigation("Table");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("OccupiedTables");
+                });
+
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Order", b =>
+                {
+                    b.Navigation("OccupiedTables");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Reservation", b =>
+                {
+                    b.Navigation("ReservationTables");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Table", b =>
+                {
+                    b.Navigation("OccupiedTables");
+
+                    b.Navigation("ReservationTables");
                 });
 #pragma warning restore 612, 618
         }

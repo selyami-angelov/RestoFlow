@@ -41,5 +41,7 @@ namespace RestoFlow.Infrastructure.Data.Models
         [Required]
         public bool isDeleted { get; set; } = false;
 
+        public List<OccupiedTable> OccupiedTables { get; set; } = null!;
+
     }
 }

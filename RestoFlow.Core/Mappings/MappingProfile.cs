@@ -2,6 +2,8 @@
 
 using RestoFlow.Core.Models.Order;
 using RestoFlow.Core.Models.Product;
+using RestoFlow.Core.Models.Reservation;
+using RestoFlow.Core.Models.Table;
 using RestoFlow.Core.Models.User;
 using RestoFlow.Infrastructure.Data.Models;
 
@@ -41,6 +43,26 @@ namespace RestoFlow.Api.Mappings
             CreateMap<Order, OrderUpdateDTO>();
             CreateMap<OrderUpdateDTO, Order>();
 
+            // Table
+            CreateMap<Table, TableDTO>();
+            CreateMap<TableDTO, Table>();
+
+            CreateMap<Table, TableCreateDTO>();
+            CreateMap<TableCreateDTO, Table>();
+
+            CreateMap<Table, TableUpdateDTO>();
+            CreateMap<TableCreateDTO, Table>();
+
+
+            // Reservation
+            CreateMap<Reservation, ReservationDTO>();
+            CreateMap<ReservationDTO, Reservation>();
+
+            CreateMap<Reservation, ReservationCreateDTO>();
+            CreateMap<ReservationCreateDTO, Reservation>();
+
+            CreateMap<Reservation, ReservationEditDTO>();
+            CreateMap<ReservationEditDTO, Reservation>();
         }
     }
 }

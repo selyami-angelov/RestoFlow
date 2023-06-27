@@ -485,6 +485,166 @@ namespace RestoFlow.Infrastructure.Data
                 IsServed = false
             }
         );
+
+            // OccupiedTables
+            modelBuilder.Entity<OccupiedTable>().HasData(
+            new OccupiedTable
+            {
+                TableId = 1,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 1
+            },
+            new OccupiedTable
+            {
+                TableId = 2,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 2
+            },
+            new OccupiedTable
+            {
+                TableId = 3,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 3
+            },
+            new OccupiedTable
+            {
+                TableId = 4,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 4
+            },
+            new OccupiedTable
+            {
+                TableId = 5,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 5
+            },
+            new OccupiedTable
+            {
+                TableId = 6,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 6
+            },
+            new OccupiedTable
+            {
+                TableId = 7,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 7
+            },
+            new OccupiedTable
+            {
+                TableId = 8,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 8
+            },
+            new OccupiedTable
+            {
+                TableId = 9,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 9
+            },
+            new OccupiedTable
+            {
+                TableId = 10,
+                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                OrderId = 10
+            });
+
+            // Reservation
+            modelBuilder.Entity<Reservation>().HasData(
+                new Reservation
+                {
+                    ReservationId = 1,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(1),
+                    PartySize = 4,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 2,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(2),
+                    PartySize = 6,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 3,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(3),
+                    PartySize = 2,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 4,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(4),
+                    PartySize = 5,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 5,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(5),
+                    PartySize = 3,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 6,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(6),
+                    PartySize = 8,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 7,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(7),
+                    PartySize = 2,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 8,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(8),
+                    PartySize = 4,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 9,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(9),
+                    PartySize = 6,
+                    IsCancelled = false
+                },
+                new Reservation
+                {
+                    ReservationId = 10,
+                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    ReservationDate = DateTime.Now.AddDays(10),
+                    PartySize = 3,
+                    IsCancelled = false
+                }
+                );
+            // ReservationTable
+            modelBuilder.Entity<ReservationTable>().HasData(
+                new ReservationTable { ReservationId = 1, TableId = 1 },
+                new ReservationTable { ReservationId = 2, TableId = 2 },
+                new ReservationTable { ReservationId = 3, TableId = 3 },
+                new ReservationTable { ReservationId = 4, TableId = 4 },
+                new ReservationTable { ReservationId = 5, TableId = 5 },
+                new ReservationTable { ReservationId = 6, TableId = 6 },
+                new ReservationTable { ReservationId = 7, TableId = 7 },
+                new ReservationTable { ReservationId = 8, TableId = 8 },
+                new ReservationTable { ReservationId = 9, TableId = 9 },
+                new ReservationTable { ReservationId = 10, TableId = 10 }
+                );
         }
     }
 }

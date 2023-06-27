@@ -9,18 +9,18 @@ namespace RestoFlow.Infrastructure.Data.Models
         public int TableId { get; set; }
 
         [ForeignKey(nameof(TableId))]
-        public Table Table { get; set; }
+        public Table Table { get; set; } = null!;
 
         [Required]
-        public string UserId { get; set; }
+        public string UserId { get; set; } = null!;
 
         [ForeignKey(nameof(UserId))]
-        public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; } = null!;
 
         [Required]
         public int OrderId { get; set; }
 
         [ForeignKey(nameof(OrderId))]
-        public Order Order { get; set; }
+        public Order Order { get; set; } = null!;
     }
 }

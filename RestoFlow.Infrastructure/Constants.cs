@@ -35,6 +35,7 @@
 
             public const string TableNumberRequiredErrorMessage = "Table name is required.";
             public const string TableSeatsRequiredErrorMessage = "Table seats is required.";
+            public const string TableExistsErrorMessage = "Table with the same table number already exists.";
 
         }
 
@@ -67,6 +68,17 @@
 
             public const string CategoryNameRequiredErrorMessage = "Category name is required.";
             public const string CategoryNameLengthErrorMessage = "Category name must be between {0} and {1} characters long.";
+        }
+
+        public class Reservation
+        {
+            public const int PartySizeMaxValue = 50;
+            public const int PartySizeMinValue = 1;
+
+            public const string UserRequiredErrorMessage = "User is required.";
+            public const string ReservationDateRequiredErrorMessage = "Reservation date is required.";
+            public const string PartySizeErrorMessage = "Party size must be between {0} and {1}.";
+
         }
     }
 }
