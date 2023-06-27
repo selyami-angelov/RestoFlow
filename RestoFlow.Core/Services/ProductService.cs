@@ -27,6 +27,11 @@ namespace RestoFlow.Core.Services
         public async Task<ProductDTO> GetProductById(int id)
         {
             var product = await repository.GetByIdAsync<Product>(id);
+            if (product.IsDeleted)
+            {
+                return null;
+            }
+
             return mapper.Map<ProductDTO>(product);
         }
 
@@ -39,10 +44,10 @@ namespace RestoFlow.Core.Services
             return createdProductDto;
         }
 
-        public async Task<ProductDTO> UpdateProduct(int id, ProductDTO productDto)
+        public async Task<ProductDTO> UpdateProduct(int id, ProductEditDTO productDto)
         {
             var existingProduct = await repository.GetByIdAsync<Product>(id);
-            if (existingProduct == null)
+            if (existingProduct == null || existingProduct.IsDeleted)
             {
                 return null;
             }
@@ -54,7 +59,6 @@ namespace RestoFlow.Core.Services
 
             repository.Update<Product>(existingProduct);
             await repository.SaveChangesAsync();
-
             return mapper.Map<ProductDTO>(existingProduct);
         }
 
@@ -66,7 +70,7 @@ namespace RestoFlow.Core.Services
                 return null;
             }
 
-            await repository.DeleteAsync<Product>(existingProduct);
+            existingProduct.IsDeleted = true;
             await repository.SaveChangesAsync();
 
             return mapper.Map<ProductDTO>(existingProduct);

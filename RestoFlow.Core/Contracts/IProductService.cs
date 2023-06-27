@@ -12,7 +12,7 @@ namespace RestoFlow.Core.Contracts
         Task<List<ProductDTO>> GetAllProducts();
         Task<ProductDTO> GetProductById(int id);
         Task<ProductDTO> CreateProduct(ProductCreateDTO productDto);
-        Task<ProductDTO> UpdateProduct(int id, ProductDTO productDto);
+        Task<ProductDTO> UpdateProduct(int id, ProductEditDTO productDto);
         Task<ProductDTO> DeleteProduct(int id);
     }
 }

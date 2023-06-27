@@ -1,0 +1,38 @@
+.vs/
+bin/
+obj/
+*.swp
+*.user
+*.suo
+*.cache
+*.bak
+*.tmp
+*.pidb
+*.userprefs
+*.vscode/
+*.vscode-test/
+*.log
+*.dbmdl
+*.VC.db
+*.csproj.user
+*.publishproj
+node_modules/
+bower_components/
+*.dbmdl
+*.jfm
+*.psess
+*.*_cache/
+
+# NuGet
+packages/
+
+# Visual Studio
+.vscode/
+*.sln.ide
+
+# Test Results
+TestResults/
+
+# Miscellaneous
+desktop.ini
+thumbs.db
