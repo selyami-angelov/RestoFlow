@@ -14,6 +14,7 @@ namespace RestoFlow.Api.Extensions
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<TokenService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -15,10 +15,9 @@ namespace RestoFlow.Infrastructure.Data.Models
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; } = null!;
 
-        [Required(ErrorMessage = ProductInfoRequiredErrorMessage)]
-        [StringLength(ProductInfoMaxLength, MinimumLength = ProductInfoMinLength,
-            ErrorMessage = ProductInfoLengthErrorMessage)]
-        public string Info { get; set; } = null!;
+        [StringLength(ProductInfoMaxLength, MinimumLength = OrderInfoMinLength,
+            ErrorMessage = OrderInfoLengthErrorMessage)]
+        public string? Info { get; set; }
 
         [Required]
         public string CreatedById { get; set; } = null!;
@@ -38,6 +37,9 @@ namespace RestoFlow.Infrastructure.Data.Models
 
         [Required]
         public bool IsServed { get; set; }
+
+        [Required]
+        public bool isDeleted { get; set; } = false;
 
     }
 }

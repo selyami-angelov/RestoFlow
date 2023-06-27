@@ -391,6 +391,100 @@ namespace RestoFlow.Infrastructure.Data
                     Img = "quinoa_salad.jpg"
                 }
             );
+
+            // Orders
+            modelBuilder.Entity<Order>().HasData(
+            new Order
+            {
+                Id = 1,
+                ProductId = 1,
+                Info = "Order 1 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 2,
+                ProductId = 2,
+                Info = "Order 2 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 3,
+                ProductId = 3,
+                Info = "Order 3 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 4,
+                ProductId = 4,
+                Info = "Order 4 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 5,
+                ProductId = 5,
+                Info = "Order 5 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 6,
+                ProductId = 6,
+                Info = "Order 6 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 7,
+                ProductId = 7,
+                Info = "Order 7 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 8,
+                ProductId = 8,
+                Info = "Order 8 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 9,
+                ProductId = 9,
+                Info = "Order 9 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            },
+            new Order
+            {
+                Id = 10,
+                ProductId = 10,
+                Info = "Order 10 information",
+                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedDate = DateTime.UtcNow,
+                IsServed = false
+            }
+        );
         }
     }
 }

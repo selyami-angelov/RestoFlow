@@ -72,7 +72,6 @@ namespace RestoFlow.Core.Services
 
             existingProduct.IsDeleted = true;
             await repository.SaveChangesAsync();
-
             return mapper.Map<ProductDTO>(existingProduct);
         }
 

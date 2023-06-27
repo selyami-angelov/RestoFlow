@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestoFlow.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RestoFlow.Infrastructure.Data;
 namespace RestoFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(RestoFlowDbContext))]
-    partial class RestoFlowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230627045852_update-order")]
+    partial class updateorder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -317,6 +319,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Info")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -325,9 +328,6 @@ namespace RestoFlow.Infrastructure.Migrations
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -338,108 +338,6 @@ namespace RestoFlow.Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7477),
-                            Info = "Order 1 information",
-                            IsServed = false,
-                            ProductId = 1,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7478),
-                            Info = "Order 2 information",
-                            IsServed = false,
-                            ProductId = 2,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7479),
-                            Info = "Order 3 information",
-                            IsServed = false,
-                            ProductId = 3,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7480),
-                            Info = "Order 4 information",
-                            IsServed = false,
-                            ProductId = 4,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7481),
-                            Info = "Order 5 information",
-                            IsServed = false,
-                            ProductId = 5,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7482),
-                            Info = "Order 6 information",
-                            IsServed = false,
-                            ProductId = 6,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7483),
-                            Info = "Order 7 information",
-                            IsServed = false,
-                            ProductId = 7,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7484),
-                            Info = "Order 8 information",
-                            IsServed = false,
-                            ProductId = 8,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7484),
-                            Info = "Order 9 information",
-                            IsServed = false,
-                            ProductId = 9,
-                            isDeleted = false
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 6, 27, 6, 33, 51, 465, DateTimeKind.Utc).AddTicks(7485),
-                            Info = "Order 10 information",
-                            IsServed = false,
-                            ProductId = 10,
-                            isDeleted = false
-                        });
                 });
 
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Product", b =>
