@@ -18,7 +18,7 @@ namespace RestoFlow.Api.Extensions
                 options.AddPolicy("AllowLocalhost3000",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000")
+                        builder.WithOrigins("http://127.0.0.1:3000")
                                .AllowAnyHeader()
                                .AllowAnyMethod();
                     });

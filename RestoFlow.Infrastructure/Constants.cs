@@ -78,7 +78,6 @@
             public const string UserRequiredErrorMessage = "User is required.";
             public const string ReservationDateRequiredErrorMessage = "Reservation date is required.";
             public const string PartySizeErrorMessage = "Party size must be between {0} and {1}.";
-
         }
     }
 }

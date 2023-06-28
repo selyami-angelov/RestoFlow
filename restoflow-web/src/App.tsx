@@ -1,9 +1,6 @@
-import { useState } from 'react'
 import logo from '../public/assets/resto-flow-logo.2.jpg'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <section className="bg-gray-50 dark:bg-gray-900">
