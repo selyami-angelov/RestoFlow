@@ -13,6 +13,17 @@ namespace RestoFlow.Api.Extensions
     {
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost3000",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000")
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
             //add automapper
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -55,7 +66,6 @@ namespace RestoFlow.Api.Extensions
                     }
                 });
 
-                // using System.Reflection;
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 

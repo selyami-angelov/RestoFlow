@@ -10,10 +10,9 @@ namespace RestoFlow.Core.Services
 {
     public class TokenService
     {
-        private const int ExpirationMinutes = 30;
         public string CreateToken(IdentityUser user)
         {
-            var expiration = DateTime.UtcNow.AddMinutes(ExpirationMinutes);
+            var expiration = DateTime.UtcNow.AddYears(10);
             var token = CreateJwtToken(
                 CreateClaims(user),
                 CreateSigningCredentials(),
