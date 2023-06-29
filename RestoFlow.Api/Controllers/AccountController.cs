@@ -68,7 +68,7 @@ namespace RestoFlow.Api.Controllers
                     return BadRequest(ModelState);
                 }
 
-                return Accepted();
+                return Ok(new { message = "Registration successful" });
             }
             catch (Exception ex)
             {
