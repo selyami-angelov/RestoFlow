@@ -7,6 +7,7 @@ const SubNavbar = () => {
 
   const navigateToRegister = () => navigate('/register')
   const navigateToLogin = () => navigate('/login')
+  const navigateToRestoTables = () => navigate('/products')
 
   return (
     <Navbar fluid>
@@ -15,6 +16,7 @@ const SubNavbar = () => {
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">RestoFlow</span>
       </Navbar.Brand>
       <div className="flex md:order-2 space-x-3">
+        <Button onClick={navigateToRestoTables}>Make Order</Button>
         <Button onClick={navigateToRegister}>Register</Button>
         <Button onClick={navigateToLogin}>Login</Button>
         <DarkThemeToggle />

@@ -19,7 +19,7 @@ const getJWT = () => {
   return jwt
 }
 
-const axios = Axios.create({
+export const axios = Axios.create({
   baseURL: 'https://localhost:44329/api/',
   headers: {
     Authorization: `Bearer ${getJWT()}`,
