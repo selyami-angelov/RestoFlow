@@ -1,4 +1,6 @@
-﻿namespace RestoFlow.Core.Models.Order
+﻿using RestoFlow.Core.Models.User;
+
+namespace RestoFlow.Core.Models.Order
 {
     public class OrderDTO
     {
@@ -7,6 +9,7 @@
         public int ProductId { get; set; }
 
         public string Info { get; set; } = null!;
+        public int ProductQuantity { get; set; }
 
         public string CreatedById { get; set; } = null!;
 

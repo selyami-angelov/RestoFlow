@@ -59,7 +59,6 @@ C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\R
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.AssemblyInfoInputs.cache
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.AssemblyInfo.cs
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.csproj.CoreCompileInputs.cache
-C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\staticwebassets\msbuild.RestoFlow.Api.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\staticwebassets\msbuild.build.RestoFlow.Api.props

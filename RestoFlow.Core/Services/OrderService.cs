@@ -2,9 +2,11 @@
 
 
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Order;
+using RestoFlow.Core.Models.User;
 using RestoFlow.Infrastructure.Data.Models;
 
 
@@ -51,8 +53,24 @@ namespace RestoFlow.Core.Services
 
         public async Task<List<OrderDTO>> GetOrders()
         {
-            var orders = repository.All<Order>().Where(order => !order.isDeleted).ToList();
-            return mapper.Map<List<OrderDTO>>(orders);
+            var orders = repository.All<Order>()
+                .Include(o => o.CreatedBy)
+                .Include(o => o.EditedBy)
+                .Where(order => !order.isDeleted);
+
+            var result = orders.Select(o => new OrderDTO()
+            {
+                Id = o.Id,
+                CreatedBy = $"{o.CreatedBy.FirstName} {o.CreatedBy.LastName}",
+                CreatedById = o.CreatedById,
+                CreatedDate = o.CreatedDate,
+                EditedBy = o.EditedBy != null ? $"{o.EditedBy.FirstName} {o.EditedBy.LastName}" : null,
+                EditedById = o.EditedById,
+                EditedDate = o.EditedDate
+            }).ToList();
+
+
+            return result;
         }
 
         public async Task<List<OrderDTO>> GetOrdersByUserId(string userId)
