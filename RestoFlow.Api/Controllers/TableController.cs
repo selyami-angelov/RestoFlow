@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Table;
+using RestoFlow.Infrastructure.Data.Models;
 
 namespace RestoFlow.Api.Controllers
 {
@@ -10,10 +12,12 @@ namespace RestoFlow.Api.Controllers
     public class TableController : ControllerBase
     {
         private readonly ITableService tableService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public TableController(ITableService _tableService)
+        public TableController(ITableService _tableService, UserManager<ApplicationUser> _userManager)
         {
             tableService = _tableService;
+            userManager = _userManager;
         }
 
         /// <summary>
@@ -24,6 +28,18 @@ namespace RestoFlow.Api.Controllers
         {
             var tables = await tableService.GetTables();
             return Ok(tables);
+        }
+
+        /// <summary>
+        /// Retrieves all occupied tables.
+        /// </summary>
+        [HttpGet]
+        [Route("occupiedtables")]
+        public async Task<IActionResult> GetOccupiedTables()
+        {
+            var tables = await tableService.GetOccupiedTables();
+            return Ok(tables);
+
         }
 
         /// <summary>
@@ -120,7 +136,8 @@ namespace RestoFlow.Api.Controllers
         [HttpPost("{tableId}/orders/{orderId}")]
         public async Task<IActionResult> AssignOrderToTable(int tableId, int orderId)
         {
-            var result = await tableService.AssignOrderToTable(orderId, tableId);
+            var currentUser = userManager.GetUserAsync(User).Result;
+            var result = await tableService.AssignOrderToTable(orderId, tableId, currentUser);
             if (!result)
             {
                 return NotFound();

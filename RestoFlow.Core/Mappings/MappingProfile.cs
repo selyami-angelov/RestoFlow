@@ -37,6 +37,9 @@ namespace RestoFlow.Api.Mappings
             CreateMap<Order, OrderCreateDTO>();
             CreateMap<OrderCreateDTO, Order>();
 
+            CreateMap<OrderDTO, OrderCreateDTO>();
+            CreateMap<OrderCreateDTO, OrderDTO>();
+
             CreateMap<Order, OrderDTO>();
             CreateMap<OrderDTO, Order>();
 

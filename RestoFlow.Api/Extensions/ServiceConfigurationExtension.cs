@@ -1,11 +1,16 @@
 ﻿using AutoMapper;
 
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using RestoFlow.Api.Mappings;
 
+using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
+using System.Security.Claims;
+using System.Text;
 
 namespace RestoFlow.Api.Extensions
 {
@@ -13,6 +18,32 @@ namespace RestoFlow.Api.Extensions
     {
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ClockSkew = TimeSpan.Zero,
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "apiWithAuthBackend",
+                        ValidAudience = "apiWithAuthBackend",
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes("ThisShouldBeSecret?")
+                        ),
+                    };
+                });
+
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowLocalhost3000",
@@ -23,6 +54,7 @@ namespace RestoFlow.Api.Extensions
                                .AllowAnyMethod();
                     });
             });
+
 
             //add automapper
             var mapperConfig = new MapperConfiguration(mc =>

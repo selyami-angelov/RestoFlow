@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+using Microsoft.EntityFrameworkCore;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Table;
@@ -88,7 +89,7 @@ namespace RestoFlow.Core.Services
             return mapper.Map<TableDTO>(existingTable);
         }
 
-        public async Task<bool> AssignOrderToTable(int orderId, int tableId)
+        public async Task<bool> AssignOrderToTable(int orderId, int tableId, ApplicationUser user)
         {
             var order = await repository.GetByIdAsync<Order>(orderId);
             var table = await repository.GetByIdAsync<Table>(tableId);
@@ -101,12 +102,29 @@ namespace RestoFlow.Core.Services
             var occupiedTable = new OccupiedTable
             {
                 Order = order,
-                Table = table
+                Table = table,
+                User = user
             };
 
             await repository.AddAsync<OccupiedTable>(occupiedTable);
             await repository.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<List<OccupiedTableDTO>> GetOccupiedTables()
+        {
+            var occupiedTables = await repository.All<Table>()
+            .Include(t => t.OccupiedTables)
+            .ThenInclude(ot => ot.User)
+            .Where(t => t.OccupiedTables.Any())
+            .Select(t => new OccupiedTableDTO
+            {
+                TableId = t.Id,
+                UserName = $"{t.OccupiedTables.FirstOrDefault().User.FirstName} {t.OccupiedTables.FirstOrDefault().User.LastName}"
+            })
+            .ToListAsync();
+
+            return occupiedTables;
         }
     }
 }

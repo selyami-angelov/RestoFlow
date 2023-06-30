@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
 
+
+using Microsoft.AspNetCore.Identity;
+
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Order;
 using RestoFlow.Infrastructure.Data.Models;
+
+
 
 namespace RestoFlow.Core.Services
 {
@@ -17,17 +22,19 @@ namespace RestoFlow.Core.Services
             mapper = _mapper;
         }
 
-        public async Task<OrderDTO> CreateOrder(OrderCreateDTO orderCreateDto)
+        public async Task<OrderDTO> CreateOrder(OrderCreateDTO orderCreateDto, ApplicationUser user)
         {
             var order = mapper.Map<Order>(orderCreateDto);
             order.CreatedDate = DateTime.UtcNow;
             order.IsServed = false;
+            order.CreatedBy = user;
+            order.CreatedById = user.Id;
+
 
             await repository.AddAsync<Order>(order);
             await repository.SaveChangesAsync();
-            var createdOrder = mapper.Map<OrderDTO>(orderCreateDto);
 
-            return mapper.Map<OrderDTO>(createdOrder);
+            return mapper.Map<OrderDTO>(order);
         }
 
         public async Task<OrderDTO> GetOrderById(int orderId)

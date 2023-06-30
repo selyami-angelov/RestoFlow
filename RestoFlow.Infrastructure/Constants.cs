@@ -42,9 +42,12 @@
         public class Order
         {
             public const int OrderInfoMinLength = 2;
-            public const int ProductInfoMaxLength = 100;
+            public const int OrderInfoMaxLength = 100;
+            public const int OrderProductQuantityMinLength = 1;
+            public const int OrderProductQuantityMaxLength = 100;
 
             public const string OrderInfoLengthErrorMessage = "Info must be between {0} and {1} characters long.";
+            public const string OrderProductQuantityLengthErrorMessage = "Order quantity must be between {0} and {1}.";
         }
 
         public class Product

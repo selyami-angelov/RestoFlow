@@ -1,9 +1,14 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using RestoFlow.Api.Extensions;
+using RestoFlow.Api.Middlewares;
 using RestoFlow.Infrastructure.Data;
 using RestoFlow.Infrastructure.Data.Models;
+
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +34,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddServices();
 builder.Services.ConfigureServices();
-builder.Services.AddAuthorization();
 
 
 var app = builder.Build();
@@ -44,8 +48,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseJwtMiddleware();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

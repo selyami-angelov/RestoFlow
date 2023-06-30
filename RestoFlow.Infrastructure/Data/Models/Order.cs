@@ -15,9 +15,12 @@ namespace RestoFlow.Infrastructure.Data.Models
         [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; } = null!;
 
-        [StringLength(ProductInfoMaxLength, MinimumLength = OrderInfoMinLength,
+        [StringLength(OrderInfoMaxLength, MinimumLength = OrderInfoMinLength,
             ErrorMessage = OrderInfoLengthErrorMessage)]
         public string? Info { get; set; }
+
+         [Range(OrderProductQuantityMinLength,OrderProductQuantityMaxLength, ErrorMessage = OrderProductQuantityLengthErrorMessage)]
+        public int ProductQuantity { get; set; }
 
         [Required]
         public string CreatedById { get; set; } = null!;

@@ -1,4 +1,5 @@
 ﻿using RestoFlow.Core.Models.Table;
+using RestoFlow.Infrastructure.Data.Models;
 
 namespace RestoFlow.Core.Contracts
 {
@@ -9,6 +10,7 @@ namespace RestoFlow.Core.Contracts
         Task<TableDTO> CreateTable(TableCreateDTO tableCreateDto);
         Task<TableDTO> UpdateTable(int tableId, TableUpdateDTO tableUpdateDto);
         Task<TableDTO> DeleteTable(int tableId);
-        Task<bool> AssignOrderToTable(int orderId, int tableId);
+        Task<bool> AssignOrderToTable(int orderId, int tableId, ApplicationUser user);
+        Task<List<OccupiedTableDTO>> GetOccupiedTables();
     }
 }

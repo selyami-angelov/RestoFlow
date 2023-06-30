@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Order;
 using RestoFlow.Infrastructure.Data.Models;
+
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace RestoFlow.Api.Controllers
 {
@@ -32,8 +36,9 @@ namespace RestoFlow.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var createdOrder = await orderService.CreateOrder(orderCreateDto);
+         
+            var currentUser = userManager.GetUserAsync(User).Result;
+            var createdOrder = await orderService.CreateOrder(orderCreateDto, currentUser);
             return CreatedAtAction(nameof(GetOrderById), new { orderId = createdOrder.Id }, createdOrder);
         }
 
