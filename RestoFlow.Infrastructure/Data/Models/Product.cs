@@ -25,6 +25,10 @@ namespace RestoFlow.Infrastructure.Data.Models
         [Required(ErrorMessage = ProductCategoryIdRequiredErrorMessage)]
         public int CategoryId { get; set; }
 
+        [Required(ErrorMessage = ProductPriceRequireErrorMessage)]
+        [Range(ProductPriceMinValue, ProductPriceMinValue, ErrorMessage = ProductPriceRangeErrorMessage)]
+        public decimal Price { get; set; }
+
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; } = null!;
 

@@ -5,10 +5,6 @@ import { Logo } from './logo'
 const SubNavbar = () => {
   const navigate = useNavigate()
 
-  const navigateToRegister = () => navigate('/register')
-  const navigateToLogin = () => navigate('/login')
-  const navigateToRestoTables = () => navigate('/products')
-
   return (
     <Navbar fluid>
       <Navbar.Brand href="https://flowbite-react.com">
@@ -16,9 +12,9 @@ const SubNavbar = () => {
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">RestoFlow</span>
       </Navbar.Brand>
       <div className="flex md:order-2 space-x-3">
-        <Button onClick={navigateToRestoTables}>Make Order</Button>
-        <Button onClick={navigateToRegister}>Register</Button>
-        <Button onClick={navigateToLogin}>Login</Button>
+        <Button onClick={() => navigate('/products')}>Make Order</Button>
+        <Button onClick={() => navigate('/register')}>Register</Button>
+        <Button onClick={() => navigate('/login')}>Login</Button>
         <DarkThemeToggle />
         <Navbar.Toggle />
       </div>
@@ -26,8 +22,8 @@ const SubNavbar = () => {
         <Navbar.Link active href="#">
           <p>Home</p>
         </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Services</Navbar.Link>
+        <Navbar.Link onClick={() => navigate('/orders')}>Orders</Navbar.Link>
+        <Navbar.Link onClick={() => navigate('/my-orders')}>My Orders</Navbar.Link>
         <Navbar.Link href="#">Pricing</Navbar.Link>
         <Navbar.Link href="#">Contact</Navbar.Link>
       </Navbar.Collapse>

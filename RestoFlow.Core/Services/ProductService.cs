@@ -52,11 +52,7 @@ namespace RestoFlow.Core.Services
                 return null;
             }
 
-            existingProduct.Name = productDto.Name;
-            existingProduct.Description = productDto.Description;
-            existingProduct.CategoryId = productDto.CategoryId;
-            existingProduct.Img = productDto.Img;
-
+            mapper.Map(productDto ,existingProduct);    
             repository.Update<Product>(existingProduct);
             await repository.SaveChangesAsync();
             return mapper.Map<ProductDTO>(existingProduct);

@@ -39,7 +39,10 @@ namespace RestoFlow.Infrastructure.Data.Models
         public DateTime? EditedDate { get; set; }
 
         [Required]
-        public bool IsServed { get; set; }
+        public bool IsServed { get; set; } = false;
+
+        [Required]
+        public bool IsReady { get; set; } = false;
 
         [Required]
         public bool isDeleted { get; set; } = false;

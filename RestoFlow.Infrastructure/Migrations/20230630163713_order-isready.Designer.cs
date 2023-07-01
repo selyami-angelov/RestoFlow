@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestoFlow.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RestoFlow.Infrastructure.Data;
 namespace RestoFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(RestoFlowDbContext))]
-    partial class RestoFlowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230630163713_order-isready")]
+    partial class orderisready
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -412,7 +414,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 1,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8220),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7727),
                             Info = "Order 1 information",
                             IsReady = false,
                             IsServed = false,
@@ -424,7 +426,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8224),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7729),
                             Info = "Order 2 information",
                             IsReady = false,
                             IsServed = false,
@@ -436,7 +438,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 3,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8226),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7730),
                             Info = "Order 3 information",
                             IsReady = false,
                             IsServed = false,
@@ -448,7 +450,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 4,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8228),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7730),
                             Info = "Order 4 information",
                             IsReady = false,
                             IsServed = false,
@@ -460,7 +462,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 5,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8229),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7731),
                             Info = "Order 5 information",
                             IsReady = false,
                             IsServed = false,
@@ -472,7 +474,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 6,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8231),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7732),
                             Info = "Order 6 information",
                             IsReady = false,
                             IsServed = false,
@@ -484,7 +486,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 7,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8233),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7733),
                             Info = "Order 7 information",
                             IsReady = false,
                             IsServed = false,
@@ -496,7 +498,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 8,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8234),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7734),
                             Info = "Order 8 information",
                             IsReady = false,
                             IsServed = false,
@@ -508,7 +510,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 9,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8236),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7735),
                             Info = "Order 9 information",
                             IsReady = false,
                             IsServed = false,
@@ -520,7 +522,7 @@ namespace RestoFlow.Infrastructure.Migrations
                         {
                             Id = 10,
                             CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
-                            CreatedDate = new DateTime(2023, 7, 1, 7, 40, 49, 933, DateTimeKind.Utc).AddTicks(8238),
+                            CreatedDate = new DateTime(2023, 6, 30, 16, 37, 13, 516, DateTimeKind.Utc).AddTicks(7736),
                             Info = "Order 10 information",
                             IsReady = false,
                             IsServed = false,
@@ -558,10 +560,6 @@ namespace RestoFlow.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -576,8 +574,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Fresh salmon fillet grilled to perfection and served with a side of steamed vegetables.",
                             Img = "grilled_salmon.jpg",
                             IsDeleted = false,
-                            Name = "Grilled Salmon",
-                            Price = 0m
+                            Name = "Grilled Salmon"
                         },
                         new
                         {
@@ -586,8 +583,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Tender breaded chicken breast topped with marinara sauce and melted mozzarella cheese, served with pasta.",
                             Img = "chicken_parmesan.jpg",
                             IsDeleted = false,
-                            Name = "Chicken Parmesan",
-                            Price = 0m
+                            Name = "Chicken Parmesan"
                         },
                         new
                         {
@@ -596,8 +592,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Juicy beef patty topped with cheese, lettuce, tomato, and pickles, served on a toasted bun.",
                             Img = "beef_burger.jpg",
                             IsDeleted = false,
-                            Name = "Beef Burger",
-                            Price = 0m
+                            Name = "Beef Burger"
                         },
                         new
                         {
@@ -606,8 +601,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Assorted fresh vegetables stir-fried to perfection in a flavorful sauce, served over steamed rice.",
                             Img = "vegetable_stir_fry.jpg",
                             IsDeleted = false,
-                            Name = "Vegetable Stir-Fry",
-                            Price = 0m
+                            Name = "Vegetable Stir-Fry"
                         },
                         new
                         {
@@ -616,8 +610,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Homemade ravioli stuffed with succulent lobster meat, served with a creamy tomato sauce.",
                             Img = "lobster_ravioli.jpg",
                             IsDeleted = false,
-                            Name = "Lobster Ravioli",
-                            Price = 0m
+                            Name = "Lobster Ravioli"
                         },
                         new
                         {
@@ -626,8 +619,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Tender pork tenderloin marinated in a savory blend of herbs and spices, grilled to perfection.",
                             Img = "pork_tenderloin.jpg",
                             IsDeleted = false,
-                            Name = "Pork Tenderloin",
-                            Price = 0m
+                            Name = "Pork Tenderloin"
                         },
                         new
                         {
@@ -636,8 +628,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Slices of breaded and fried eggplant layered with marinara sauce and melted mozzarella cheese.",
                             Img = "eggplant_parmesan.jpg",
                             IsDeleted = false,
-                            Name = "Eggplant Parmesan",
-                            Price = 0m
+                            Name = "Eggplant Parmesan"
                         },
                         new
                         {
@@ -646,8 +637,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Plump shrimp sautéed in garlic butter and white wine, served over a bed of linguine pasta.",
                             Img = "shrimp_scampi.jpg",
                             IsDeleted = false,
-                            Name = "Shrimp Scampi",
-                            Price = 0m
+                            Name = "Shrimp Scampi"
                         },
                         new
                         {
@@ -656,8 +646,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Creamy risotto cooked with fresh mushrooms, Parmesan cheese, and a hint of truffle oil.",
                             Img = "mushroom_risotto.jpg",
                             IsDeleted = false,
-                            Name = "Mushroom Risotto",
-                            Price = 0m
+                            Name = "Mushroom Risotto"
                         },
                         new
                         {
@@ -666,8 +655,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Grilled steak served with a side of crispy French fries and a tangy dipping sauce.",
                             Img = "steak_frites.jpg",
                             IsDeleted = false,
-                            Name = "Steak Frites",
-                            Price = 0m
+                            Name = "Steak Frites"
                         },
                         new
                         {
@@ -676,8 +664,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Classic New York-style cheesecake with a buttery graham cracker crust and creamy filling.",
                             Img = "cheesecake.jpg",
                             IsDeleted = false,
-                            Name = "Cheesecake",
-                            Price = 0m
+                            Name = "Cheesecake"
                         },
                         new
                         {
@@ -686,8 +673,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Layers of espresso-soaked ladyfingers and creamy mascarpone cheese, dusted with cocoa powder.",
                             Img = "tiramisu.jpg",
                             IsDeleted = false,
-                            Name = "Tiramisu",
-                            Price = 0m
+                            Name = "Tiramisu"
                         },
                         new
                         {
@@ -696,8 +682,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Homemade apple pie with a flaky crust and a sweet and tangy apple filling.",
                             Img = "apple_pie.jpg",
                             IsDeleted = false,
-                            Name = "Apple Pie",
-                            Price = 0m
+                            Name = "Apple Pie"
                         },
                         new
                         {
@@ -706,8 +691,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Velvety smooth chocolate mousse topped with a dollop of whipped cream and chocolate shavings.",
                             Img = "chocolate_mousse.jpg",
                             IsDeleted = false,
-                            Name = "Chocolate Mousse",
-                            Price = 0m
+                            Name = "Chocolate Mousse"
                         },
                         new
                         {
@@ -716,8 +700,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Light and fluffy shortcake layered with fresh strawberries and whipped cream.",
                             Img = "strawberry_shortcake.jpg",
                             IsDeleted = false,
-                            Name = "Strawberry Shortcake",
-                            Price = 0m
+                            Name = "Strawberry Shortcake"
                         },
                         new
                         {
@@ -726,8 +709,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Tangy lemon filling in a buttery tart shell, topped with a dusting of powdered sugar.",
                             Img = "lemon_tart.jpg",
                             IsDeleted = false,
-                            Name = "Lemon Tart",
-                            Price = 0m
+                            Name = "Lemon Tart"
                         },
                         new
                         {
@@ -736,8 +718,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Smooth and creamy Italian dessert made with sweetened cream and gelatin.",
                             Img = "panna_cotta.jpg",
                             IsDeleted = false,
-                            Name = "Panna Cotta",
-                            Price = 0m
+                            Name = "Panna Cotta"
                         },
                         new
                         {
@@ -746,8 +727,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Moist and velvety red velvet cake with layers of cream cheese frosting.",
                             Img = "red_velvet_cake.jpg",
                             IsDeleted = false,
-                            Name = "Red Velvet Cake",
-                            Price = 0m
+                            Name = "Red Velvet Cake"
                         },
                         new
                         {
@@ -756,8 +736,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Refreshing pie made with tangy key lime juice and a sweet graham cracker crust.",
                             Img = "key_lime_pie.jpg",
                             IsDeleted = false,
-                            Name = "Key Lime Pie",
-                            Price = 0m
+                            Name = "Key Lime Pie"
                         },
                         new
                         {
@@ -766,8 +745,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Classic homemade chocolate chip cookies with gooey chocolate chips and a soft, chewy texture.",
                             Img = "chocolate_chip_cookies.jpg",
                             IsDeleted = false,
-                            Name = "Chocolate Chip Cookies",
-                            Price = 0m
+                            Name = "Chocolate Chip Cookies"
                         },
                         new
                         {
@@ -776,8 +754,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Chilled coffee served over ice with a splash of milk and a hint of sweetness.",
                             Img = "iced_coffee.jpg",
                             IsDeleted = false,
-                            Name = "Iced Coffee",
-                            Price = 0m
+                            Name = "Iced Coffee"
                         },
                         new
                         {
@@ -786,8 +763,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Refreshing smoothie made with ripe mangoes, yogurt, and a touch of honey.",
                             Img = "mango_smoothie.jpg",
                             IsDeleted = false,
-                            Name = "Mango Smoothie",
-                            Price = 0m
+                            Name = "Mango Smoothie"
                         },
                         new
                         {
@@ -796,8 +772,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Steeped green tea leaves with a delicate and soothing flavor.",
                             Img = "green_tea.jpg",
                             IsDeleted = false,
-                            Name = "Green Tea",
-                            Price = 0m
+                            Name = "Green Tea"
                         },
                         new
                         {
@@ -806,8 +781,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Freshly squeezed orange juice packed with vitamin C and a burst of citrus flavor.",
                             Img = "orange_juice.jpg",
                             IsDeleted = false,
-                            Name = "Orange Juice",
-                            Price = 0m
+                            Name = "Orange Juice"
                         },
                         new
                         {
@@ -816,8 +790,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Homemade lemonade made with freshly squeezed lemons and a touch of sweetness.",
                             Img = "lemonade.jpg",
                             IsDeleted = false,
-                            Name = "Lemonade",
-                            Price = 0m
+                            Name = "Lemonade"
                         },
                         new
                         {
@@ -826,8 +799,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Classic Cuban cocktail made with rum, fresh mint leaves, lime juice, and a hint of sweetness.",
                             Img = "mojito.jpg",
                             IsDeleted = false,
-                            Name = "Mojito",
-                            Price = 0m
+                            Name = "Mojito"
                         },
                         new
                         {
@@ -836,8 +808,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Rich and creamy hot chocolate topped with whipped cream and chocolate shavings.",
                             Img = "hot_chocolate.jpg",
                             IsDeleted = false,
-                            Name = "Hot Chocolate",
-                            Price = 0m
+                            Name = "Hot Chocolate"
                         },
                         new
                         {
@@ -846,8 +817,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Bubbly and refreshing carbonated water with a clean and crisp taste.",
                             Img = "sparkling_water.jpg",
                             IsDeleted = false,
-                            Name = "Sparkling Water",
-                            Price = 0m
+                            Name = "Sparkling Water"
                         },
                         new
                         {
@@ -856,8 +826,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Chilled black tea served over ice, optionally sweetened and garnished with a slice of lemon.",
                             Img = "iced_tea.jpg",
                             IsDeleted = false,
-                            Name = "Iced Tea",
-                            Price = 0m
+                            Name = "Iced Tea"
                         },
                         new
                         {
@@ -866,8 +835,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "A tropical blend of assorted fruit juices with a sweet and tangy flavor.",
                             Img = "fruit_punch.jpg",
                             IsDeleted = false,
-                            Name = "Fruit Punch",
-                            Price = 0m
+                            Name = "Fruit Punch"
                         },
                         new
                         {
@@ -876,8 +844,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Classic Caesar salad with crisp romaine lettuce, Parmesan cheese, croutons, and tangy Caesar dressing.",
                             Img = "caesar_salad.jpg",
                             IsDeleted = false,
-                            Name = "Caesar Salad",
-                            Price = 0m
+                            Name = "Caesar Salad"
                         },
                         new
                         {
@@ -886,8 +853,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Fresh mozzarella cheese, ripe tomatoes, and basil leaves drizzled with balsamic glaze and olive oil.",
                             Img = "caprese_salad.jpg",
                             IsDeleted = false,
-                            Name = "Caprese Salad",
-                            Price = 0m
+                            Name = "Caprese Salad"
                         },
                         new
                         {
@@ -896,8 +862,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Classic Greek salad with fresh lettuce, tomatoes, cucumbers, olives, feta cheese, and a tangy dressing.",
                             Img = "greek_salad.jpg",
                             IsDeleted = false,
-                            Name = "Greek Salad",
-                            Price = 0m
+                            Name = "Greek Salad"
                         },
                         new
                         {
@@ -906,8 +871,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Assorted greens topped with grilled chicken, avocado, bacon, hard-boiled eggs, and blue cheese crumbles.",
                             Img = "cobb_salad.jpg",
                             IsDeleted = false,
-                            Name = "Cobb Salad",
-                            Price = 0m
+                            Name = "Cobb Salad"
                         },
                         new
                         {
@@ -916,8 +880,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "Fresh spinach leaves topped with sliced strawberries, goat cheese, and a light vinaigrette dressing.",
                             Img = "spinach_salad.jpg",
                             IsDeleted = false,
-                            Name = "Spinach Salad",
-                            Price = 0m
+                            Name = "Spinach Salad"
                         },
                         new
                         {
@@ -926,8 +889,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "A French salad made with tuna, boiled eggs, green beans, potatoes, olives, and a Dijon vinaigrette.",
                             Img = "nicoise_salad.jpg",
                             IsDeleted = false,
-                            Name = "Nicoise Salad",
-                            Price = 0m
+                            Name = "Nicoise Salad"
                         },
                         new
                         {
@@ -936,8 +898,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "A refreshing salad made with crisp apples, celery, grapes, walnuts, and a creamy dressing.",
                             Img = "waldorf_salad.jpg",
                             IsDeleted = false,
-                            Name = "Waldorf Salad",
-                            Price = 0m
+                            Name = "Waldorf Salad"
                         },
                         new
                         {
@@ -946,8 +907,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "A vibrant salad with mixed greens, grilled corn, black beans, tomatoes, avocado, and a zesty dressing.",
                             Img = "mexican_salad.jpg",
                             IsDeleted = false,
-                            Name = "Mexican Salad",
-                            Price = 0m
+                            Name = "Mexican Salad"
                         },
                         new
                         {
@@ -956,8 +916,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "A protein-packed salad made with flaky tuna, crunchy vegetables, and a tangy mayonnaise dressing.",
                             Img = "tuna_salad.jpg",
                             IsDeleted = false,
-                            Name = "Tuna Salad",
-                            Price = 0m
+                            Name = "Tuna Salad"
                         },
                         new
                         {
@@ -966,8 +925,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             Description = "A nutritious salad made with quinoa, fresh vegetables, herbs, and a zesty lemon dressing.",
                             Img = "quinoa_salad.jpg",
                             IsDeleted = false,
-                            Name = "Quinoa Salad",
-                            Price = 0m
+                            Name = "Quinoa Salad"
                         });
                 });
 
@@ -1004,7 +962,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 1,
                             IsCancelled = false,
                             PartySize = 4,
-                            ReservationDate = new DateTime(2023, 7, 2, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8313),
+                            ReservationDate = new DateTime(2023, 7, 1, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7801),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1012,7 +970,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 2,
                             IsCancelled = false,
                             PartySize = 6,
-                            ReservationDate = new DateTime(2023, 7, 3, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8370),
+                            ReservationDate = new DateTime(2023, 7, 2, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7833),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1020,7 +978,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 3,
                             IsCancelled = false,
                             PartySize = 2,
-                            ReservationDate = new DateTime(2023, 7, 4, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8375),
+                            ReservationDate = new DateTime(2023, 7, 3, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7836),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1028,7 +986,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 4,
                             IsCancelled = false,
                             PartySize = 5,
-                            ReservationDate = new DateTime(2023, 7, 5, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8379),
+                            ReservationDate = new DateTime(2023, 7, 4, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7838),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1036,7 +994,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 5,
                             IsCancelled = false,
                             PartySize = 3,
-                            ReservationDate = new DateTime(2023, 7, 6, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8384),
+                            ReservationDate = new DateTime(2023, 7, 5, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7840),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1044,7 +1002,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 6,
                             IsCancelled = false,
                             PartySize = 8,
-                            ReservationDate = new DateTime(2023, 7, 7, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8388),
+                            ReservationDate = new DateTime(2023, 7, 6, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7842),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1052,7 +1010,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 7,
                             IsCancelled = false,
                             PartySize = 2,
-                            ReservationDate = new DateTime(2023, 7, 8, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8393),
+                            ReservationDate = new DateTime(2023, 7, 7, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7845),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1060,7 +1018,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 8,
                             IsCancelled = false,
                             PartySize = 4,
-                            ReservationDate = new DateTime(2023, 7, 9, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8398),
+                            ReservationDate = new DateTime(2023, 7, 8, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7847),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1068,7 +1026,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 9,
                             IsCancelled = false,
                             PartySize = 6,
-                            ReservationDate = new DateTime(2023, 7, 10, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8403),
+                            ReservationDate = new DateTime(2023, 7, 9, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7849),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         },
                         new
@@ -1076,7 +1034,7 @@ namespace RestoFlow.Infrastructure.Migrations
                             ReservationId = 10,
                             IsCancelled = false,
                             PartySize = 3,
-                            ReservationDate = new DateTime(2023, 7, 11, 10, 40, 49, 933, DateTimeKind.Local).AddTicks(8407),
+                            ReservationDate = new DateTime(2023, 7, 10, 19, 37, 13, 516, DateTimeKind.Local).AddTicks(7851),
                             UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df"
                         });
                 });

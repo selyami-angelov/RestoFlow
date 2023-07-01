@@ -56,7 +56,15 @@
             public const int ProductNameMaxLength = 50;
             public const int ProductDescriptionMinLength = 10;
             public const int ProductDescriptionMaxLength = 500;
+            public const int ProductPriceMinValue = 0;
+            public const decimal ProductPriceMaxValue = decimal.MaxValue;
+            public const int ProductPricePrecision = 0;
 
+
+
+
+            public const string ProductPriceRequireErrorMessage = "Price is required";
+            public const string ProductPriceRangeErrorMessage = "Price must be a positive number";
             public const string ProductNameRequiredErrorMessage = "Product name is required.";
             public const string ProductDescriptionRequiredErrorMessage = "Product description is required.";
             public const string ProductNameLengthErrorMessage = "Product name must be between {0} and {1} characters long.";

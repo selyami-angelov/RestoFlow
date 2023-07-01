@@ -19,6 +19,10 @@ namespace RestoFlow.Core.Models.Product
             ErrorMessage = ProductDescriptionLengthErrorMessage)]
         public string Description { get; set; } = null!;
 
+        [Required(ErrorMessage = ProductPriceRequireErrorMessage)]
+        [Range(ProductPriceMinValue, ProductPriceMinValue, ErrorMessage = ProductPriceRangeErrorMessage)]
+        public decimal Price { get; set; }
+
         [Required(ErrorMessage = ProductCategoryIdRequiredErrorMessage)]
         public int CategoryId { get; set; }
 

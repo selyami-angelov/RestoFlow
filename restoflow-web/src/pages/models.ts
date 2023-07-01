@@ -30,3 +30,18 @@ export interface OccupiedTables {
   tableId: number
   userName: string
 }
+
+export interface Order {
+  createdBy: string
+  createdById: string
+  createdDate: string
+  id: number
+  info: string
+  isServed: boolean
+  isReady: boolean
+  productId: number
+  productQuantity: number
+  editedBy?: string
+  editedById?: string
+  editedDate?: string
+}

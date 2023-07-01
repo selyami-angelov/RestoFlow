@@ -73,12 +73,12 @@ namespace RestoFlow.Api.Controllers
         /// <summary>
         /// Retrieves orders associated with a user.
         /// </summary>
-        /// <param name="userId">The ID of the user.</param>
         /// <returns>A list of orders associated with the user.</returns>
-        [HttpGet("user/{userId}")]
-        public async Task<IActionResult> GetOrdersByUserId(string userId)
+        [HttpGet("my-orders")]
+        public async Task<IActionResult> GetOrdersByUserId()
         {
-            var orders = await orderService.GetOrdersByUserId(userId);
+            var user = userManager.GetUserAsync(User).Result;
+            var orders = await orderService.GetOrdersByUserId(user.Id);
             return Ok(orders);
         }
 
@@ -100,6 +100,42 @@ namespace RestoFlow.Api.Controllers
             var user = userManager.GetUserAsync(User).Result;
 
             var updatedOrder = await orderService.UpdateOrder(orderId, user, orderUpdateDto);
+            if (updatedOrder == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedOrder);
+        }
+
+        /// <summary>
+        /// Marks an order as ready.
+        /// </summary>
+        /// <param name="orderId">The ID of the order to mark as ready.</param>
+        /// <returns>Returns an HTTP status code and the updated order if successful. Returns 404 Not Found if the order is not found.</returns>
+        [HttpPut("ready/{orderId}")]
+        public async Task<IActionResult> MarkOrderAsReady(int orderId)
+        {
+
+            var updatedOrder = await orderService.MarkOrderAsReady(orderId);
+            if (updatedOrder == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(updatedOrder);
+        }
+
+        /// <summary>
+        /// Marks an order as served.
+        /// </summary>
+        /// <param name="orderId">The ID of the order to mark as served.</param>
+        /// <returns>Returns an HTTP status code and the updated order if successful. Returns 404 Not Found if the order is not found.</returns>
+        [HttpPut("served/{orderId}")]
+        public async Task<IActionResult> MarkOrderAsServed(int orderId)
+        {
+
+            var updatedOrder = await orderService.MarkOrderAsServed(orderId);
             if (updatedOrder == null)
             {
                 return NotFound();

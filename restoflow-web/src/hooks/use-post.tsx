@@ -1,16 +1,26 @@
-import { AxiosRequestConfig } from 'axios'
 import useAxios from 'axios-hooks'
 
-type URL = string
+interface Props {
+  url?: string
+  manual?: boolean
+}
 
-export const usePost = <T,>(url?: URL) => {
-  const [{ data, error, loading }, executePost] = useAxios<T>({
-    url,
-    method: 'POST',
-  })
+interface PostDataProps {
+  data?: unknown
+  url?: string
+}
 
-  const postData = (data: unknown, url?: string) => {
-    executePost({ data, url })
+export const usePost = <T,>({ url, manual }: Props) => {
+  const [{ data, error, loading }, executePost] = useAxios<T>(
+    {
+      url,
+      method: 'POST',
+    },
+    { manual }
+  )
+
+  const postData = (postData: PostDataProps) => {
+    executePost(postData)
   }
 
   return { data: data ?? [], error, loading, postData }

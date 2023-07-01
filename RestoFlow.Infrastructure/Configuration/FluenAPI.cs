@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 using RestoFlow.Infrastructure.Data.Models;
 
@@ -38,6 +39,10 @@ namespace RestoFlow.Infrastructure.Configuration
                .WithMany(c => c.Products)
                .HasForeignKey(p => p.CategoryId)
                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Product>()
+               .Property(p => p.Price)
+               .HasPrecision(18, 2);
         }
 
         public static void ConfigureOrders(ModelBuilder modelBuilder)
@@ -66,5 +71,14 @@ namespace RestoFlow.Infrastructure.Configuration
                 .OnDelete(DeleteBehavior.Restrict);
 
         }
+
+
+        public static void ConfigurePrice(ModelBuilder modelBuilder)
+        {
+
+           
+
+        }
+
     }
 }

@@ -5,4 +5,5 @@ export const API_ENDPOINTS = {
   TABLES: '/tables',
   OCCUPIED_TABLES: '/tables/occupiedtables',
   ORDERS: '/orders',
+  MY_ORDERS: '/orders/my-orders',
 }

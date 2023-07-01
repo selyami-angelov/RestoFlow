@@ -13,5 +13,6 @@ namespace RestoFlow.Core.Models.Order
         public string? Info { get; set; }
 
         public bool IsServed { get; set; }
+        public bool IsReady { get; set; }
     }
 }

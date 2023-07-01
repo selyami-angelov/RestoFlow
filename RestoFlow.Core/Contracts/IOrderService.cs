@@ -11,5 +11,7 @@ namespace RestoFlow.Core.Contracts
         Task<List<OrderDTO>> GetOrdersByUserId(string userId);
         Task<OrderDTO> UpdateOrder(int orderId, ApplicationUser user, OrderUpdateDTO orderUpdateDto);
         Task<OrderDTO> DeleteOrder(int orderId);
+        Task<OrderDTO> MarkOrderAsReady(int orderId);
+        Task<OrderDTO> MarkOrderAsServed(int orderId);
     }
 }

@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 
-
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Order;
-using RestoFlow.Core.Models.User;
 using RestoFlow.Infrastructure.Data.Models;
 
 
@@ -29,6 +26,7 @@ namespace RestoFlow.Core.Services
             var order = mapper.Map<Order>(orderCreateDto);
             order.CreatedDate = DateTime.UtcNow;
             order.IsServed = false;
+            order.IsReady = false;
             order.CreatedBy = user;
             order.CreatedById = user.Id;
 
@@ -56,18 +54,9 @@ namespace RestoFlow.Core.Services
             var orders = repository.All<Order>()
                 .Include(o => o.CreatedBy)
                 .Include(o => o.EditedBy)
-                .Where(order => !order.isDeleted);
+                .Where(order => !order.isDeleted && !order.IsReady).ToList();
 
-            var result = orders.Select(o => new OrderDTO()
-            {
-                Id = o.Id,
-                CreatedBy = $"{o.CreatedBy.FirstName} {o.CreatedBy.LastName}",
-                CreatedById = o.CreatedById,
-                CreatedDate = o.CreatedDate,
-                EditedBy = o.EditedBy != null ? $"{o.EditedBy.FirstName} {o.EditedBy.LastName}" : null,
-                EditedById = o.EditedById,
-                EditedDate = o.EditedDate
-            }).ToList();
+            var result = orders.Select(order => MapOrder(order)).ToList();
 
 
             return result;
@@ -75,8 +64,9 @@ namespace RestoFlow.Core.Services
 
         public async Task<List<OrderDTO>> GetOrdersByUserId(string userId)
         {
-            var orders = repository.All<Order>().Where(order => order.CreatedById == userId);
-            return orders.Select(order => mapper.Map<OrderDTO>(order)).ToList();
+            var orders = repository.All<Order>().Where(order => order.CreatedById == userId).ToList();
+            var  result = orders.Select(order => MapOrder(order)).ToList();
+            return result;
         }
 
         public async Task<OrderDTO> UpdateOrder(int orderId, ApplicationUser user, OrderUpdateDTO orderUpdateDto)
@@ -108,6 +98,34 @@ namespace RestoFlow.Core.Services
             return mapper.Map<OrderDTO>(existingOrder);
         }
 
+        public async Task<OrderDTO> MarkOrderAsReady(int orderId)
+        {
+            var existingOrder = await repository.GetByIdAsync<Order>(orderId);
+
+            if (existingOrder == null || existingOrder.isDeleted)
+            {
+                return null;
+            }
+
+            existingOrder.IsReady = true;
+            await repository.SaveChangesAsync();
+            return mapper.Map<OrderDTO>(existingOrder);
+        }
+
+        public async Task<OrderDTO> MarkOrderAsServed(int orderId)
+        {
+            var existingOrder = await repository.GetByIdAsync<Order>(orderId);
+
+            if (existingOrder == null || existingOrder.isDeleted)
+            {
+                return null;
+            }
+
+            existingOrder.IsServed = true;
+            await repository.SaveChangesAsync();
+            return mapper.Map<OrderDTO>(existingOrder);
+        }
+
         public async Task<OrderDTO> DeleteOrder(int orderId)
         {
             var existingOrder = await repository.GetByIdAsync<Order>(orderId);
@@ -120,6 +138,26 @@ namespace RestoFlow.Core.Services
             await repository.DeleteAsync<Order>(existingOrder);
             await repository.SaveChangesAsync();
             return mapper.Map<OrderDTO>(existingOrder);
+        }
+
+
+        private OrderDTO MapOrder(Order order)
+        {
+            return new OrderDTO()
+            {
+                Id = order.Id,
+                CreatedBy = $"{order.CreatedBy.FirstName} {order.CreatedBy.LastName}",
+                CreatedById = order.CreatedById,
+                CreatedDate = order.CreatedDate,
+                EditedBy = order.EditedBy != null ? $"{order.EditedBy.FirstName} {order.EditedBy.LastName}" : null,
+                EditedById = order.EditedById,
+                EditedDate = order.EditedDate,
+                Info = order.Info,
+                ProductId = order.ProductId,
+                ProductQuantity = order.ProductQuantity,
+                IsReady=order.IsReady,
+                IsServed=order.IsServed,
+            };
         }
     }
 

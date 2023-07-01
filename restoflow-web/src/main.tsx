@@ -10,6 +10,8 @@ import './index.css'
 import { configure } from 'axios-hooks'
 import { AuthContextProvider } from './context/AuthContext'
 import { Products } from './pages/products'
+import { Orders } from './pages/orders'
+import { MyOrders } from './pages/my-orders'
 
 const getJWT = () => {
   const userString = localStorage.getItem('user')
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: '/products',
         element: <Products />,
+      },
+      {
+        path: '/orders',
+        element: <Orders />,
+      },
+      {
+        path: '/my-orders',
+        element: <MyOrders />,
       },
     ],
   },

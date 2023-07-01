@@ -24,5 +24,6 @@ namespace RestoFlow.Core.Models.Order
         public DateTime? EditedDate { get; set; }
 
         public bool IsServed { get; set; }
+        public bool IsReady { get; set; }
     }
 }
