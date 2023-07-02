@@ -19,6 +19,7 @@ namespace RestoFlow.Infrastructure.Data
             FluenAPI.ConfigureOccupiedTables(modelBuilder);
             FluenAPI.ConfigureProducts(modelBuilder);
             FluenAPI.ConfigureReservations(modelBuilder);
+            FluenAPI.ConfigureBills(modelBuilder);
 
             DbSeeder.SeedCategories(modelBuilder);
             DbSeeder.SeedProducts(modelBuilder);

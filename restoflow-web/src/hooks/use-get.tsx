@@ -1,7 +1,7 @@
 import useAxios from 'axios-hooks'
 
 interface Props {
-  url: string
+  url?: string
   manual?: boolean
 }
 
@@ -14,9 +14,9 @@ export const useGet = <T,>({ url, manual }: Props) => {
     { manual }
   )
 
-  const getData = () => {
-    executeGet()
+  const getData = (url?: string) => {
+    executeGet({ url })
   }
 
-  return { data: data ?? [], error, loading, getData: manual ? getData : null }
+  return { data: data, error, loading, getData }
 }

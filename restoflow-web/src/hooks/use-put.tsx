@@ -23,5 +23,5 @@ export const usePut = <T,>({ url, manual }: Props) => {
     executePut(putData)
   }
 
-  return { data: data ?? [], error, loading, putData }
+  return { data, error, loading, putData }
 }

@@ -62,6 +62,21 @@ namespace RestoFlow.Core.Services
             return result;
         }
 
+        public async Task<List<OrderDTO>> GetUserOrdersByTableId(string userId ,int tableId)
+        {
+            var orders = repository.All<Order>()
+                .Include(o => o.OccupiedTables)
+                .Include(o => o.CreatedBy)
+                .Include(o => o.EditedBy)
+                .Where(o => o.OccupiedTables.Any(ot => ot.TableId == tableId) && o.CreatedBy.Id == userId &&!o.isDeleted)
+                .ToList();
+
+            var result = orders.Select(order => MapOrder(order)).ToList();
+
+
+            return result;
+        }
+
         public async Task<List<OrderDTO>> GetOrdersByUserId(string userId)
         {
             var orders = repository.All<Order>().Where(order => order.CreatedById == userId).ToList();
@@ -159,6 +174,7 @@ namespace RestoFlow.Core.Services
                 IsServed=order.IsServed,
             };
         }
+
     }
 
 }

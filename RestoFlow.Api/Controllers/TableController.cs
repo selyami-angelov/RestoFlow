@@ -31,6 +31,18 @@ namespace RestoFlow.Api.Controllers
         }
 
         /// <summary>
+        /// Retrieves all user tables.
+        /// </summary>
+        [HttpGet]
+        [Route("my-tables")]
+        public async Task<IActionResult> GetUserTables ()
+        {
+            var currentUser = userManager.GetUserAsync(User).Result;
+            var tables = await tableService.GetTablesByUserId(currentUser.Id);
+            return Ok(tables);
+        }
+
+        /// <summary>
         /// Retrieves all occupied tables.
         /// </summary>
         [HttpGet]
@@ -97,6 +109,31 @@ namespace RestoFlow.Api.Controllers
             try
             {
                 var updatedTable = await tableService.UpdateTable(tableId, tableUpdateDto);
+                if (updatedTable == null)
+                {
+                    return NotFound();
+                }
+                return Ok(updatedTable);
+
+            }
+            catch (ApplicationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Release a specific table.
+        /// </summary>
+        /// <param name="tableId">The ID of the table to release.</param>
+        [HttpPut("release/{tableId}")]
+        public async Task<IActionResult> ReleaseTable(int tableId)
+        {
+
+            try
+            {
+                var updatedTable = await tableService.ReleaseTable(tableId);
                 if (updatedTable == null)
                 {
                     return NotFound();

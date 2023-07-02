@@ -84,6 +84,19 @@ namespace RestoFlow.Api.Controllers
 
 
         /// <summary>
+        /// Retrieves orders associated with a user.
+        /// </summary>
+        /// <returns>A list of orders associated with the user.</returns>
+        [HttpGet("tables/{tableId}")]
+        public async Task<IActionResult> GetUserOrdersByTableId(int tableId)
+        {
+            var user = userManager.GetUserAsync(User).Result;
+            var orders = await orderService.GetUserOrdersByTableId(user.Id, tableId);
+            return Ok(orders);
+        }
+
+
+        /// <summary>
         /// Updates an existing order.
         /// </summary>
         /// <param name="orderId">The ID of the order to update.</param>

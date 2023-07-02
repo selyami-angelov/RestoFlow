@@ -20,7 +20,7 @@ namespace RestoFlow.Infrastructure.Configuration
 
             modelBuilder.Entity<OccupiedTable>()
                 .HasOne(ot => ot.User)
-                .WithMany(u=> u.OccupiedTables)
+                .WithMany(u => u.OccupiedTables)
                 .HasForeignKey(ot => ot.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -73,11 +73,24 @@ namespace RestoFlow.Infrastructure.Configuration
         }
 
 
-        public static void ConfigurePrice(ModelBuilder modelBuilder)
+        public static void ConfigureBills(ModelBuilder modelBuilder)
         {
 
-           
+            modelBuilder.Entity<Bill>()
+                .Property(p => p.TotalSum)
+                .HasPrecision(18, 2);
 
+            modelBuilder.Entity<Bill>()
+                .HasOne(b => b.Table)
+                .WithMany(t => t.Bills)
+                .HasForeignKey(b => b.TableId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Bill>()
+                .HasOne(b => b.User)
+                .WithMany(u => u.Bills)
+                .HasForeignKey(b => b.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
     }

@@ -52,7 +52,9 @@ export const OrderDetailsModal = ({ closeTablesModal, isOpen, onCofirm, loadingC
   }
 
   useEffect(() => {
-    setFilteredTables(tableData)
+    if (tableData) {
+      setFilteredTables(tableData)
+    }
   }, [tableData])
 
   const handleTableClick = (table: Table) => {
@@ -89,8 +91,11 @@ export const OrderDetailsModal = ({ closeTablesModal, isOpen, onCofirm, loadingC
   }
 
   const filterTables = (search: string) => {
+    if (!tableData) {
+      return
+    }
     const filtered = tableData.filter((t) => {
-      const occupiedTable = occupiedTables.find((ot) => ot.tableId === t.id)
+      const occupiedTable = occupiedTables?.find((ot) => ot.tableId === t.id)
       const searchString = search.toLocaleLowerCase()
       return (
         t.seats.toString().includes(searchString) ||
@@ -109,7 +114,7 @@ export const OrderDetailsModal = ({ closeTablesModal, isOpen, onCofirm, loadingC
   }
 
   const getTableState = (tableId: number) => {
-    const occupiedTable = occupiedTables.find((oc) => oc.tableId === tableId)
+    const occupiedTable = occupiedTables?.find((oc) => oc.tableId === tableId)
     const state = occupiedTable ? 'failure' : 'success'
     const text = occupiedTable ? 'Busy' : 'Free'
     const servingPerson = occupiedTable ? occupiedTable.userName : ''

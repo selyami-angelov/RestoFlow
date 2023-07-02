@@ -53,3 +53,11 @@ export interface Category {
   name: string
   isDeleted: boolean
 }
+
+export interface Bill {
+  id: number
+  tableId: number
+  userId: string
+  date: string
+  totalSum: number
+}

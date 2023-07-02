@@ -17,5 +17,7 @@ namespace RestoFlow.Infrastructure.Data.Models
 
         public List<OccupiedTable> OccupiedTables { get; set; } = null!;
         public List<ReservationTable> ReservationTables { get; set; } = null!;
+
+        public List<Bill> Bills { get; set; } = null!;
     }
 }

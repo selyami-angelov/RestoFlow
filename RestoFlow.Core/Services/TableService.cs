@@ -27,6 +27,15 @@ namespace RestoFlow.Core.Services
             return mapper.Map<List<TableDTO>>(tables);
         }
 
+        public async Task<List<TableDTO>> GetTablesByUserId(string userId)
+        {
+            var tables = repository.All<Table>()
+                .Include(t => t.OccupiedTables)
+                .Where(t => t.OccupiedTables.Any(oc => oc.UserId == userId))
+                .ToList();
+            return mapper.Map<List<TableDTO>>(tables);
+        }
+
         public async Task<TableDTO> GetTableById(int tableId)
         {
             var table = await repository.GetByIdAsync<Table>(tableId);
@@ -38,6 +47,24 @@ namespace RestoFlow.Core.Services
 
             return mapper.Map<TableDTO>(table);
         }
+
+        public async Task<TableDTO> ReleaseTable(int tableId)
+        {
+            var table = repository.All<Table>()
+                .Include(t => t.OccupiedTables)
+                .FirstOrDefault(t => t.Id == tableId);
+
+            if (table == null)
+            {
+                return null;
+            }
+
+            table.OccupiedTables.Clear();
+            repository.Update<Table>(table);
+            await repository.SaveChangesAsync();
+            return mapper.Map<TableDTO>(table);
+        }
+
 
         public async Task<TableDTO> CreateTable(TableCreateDTO tableCreateDto)
         {

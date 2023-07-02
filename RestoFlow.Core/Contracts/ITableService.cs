@@ -12,5 +12,7 @@ namespace RestoFlow.Core.Contracts
         Task<TableDTO> DeleteTable(int tableId);
         Task<bool> AssignOrderToTable(int orderId, int tableId, ApplicationUser user);
         Task<List<OccupiedTableDTO>> GetOccupiedTables();
+        Task<List<TableDTO>> GetTablesByUserId(string userId);
+        Task<TableDTO> ReleaseTable(int tableId);
     }
 }

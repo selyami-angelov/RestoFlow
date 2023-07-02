@@ -64,6 +64,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Grilled Salmon",
                     Description = "Fresh salmon fillet grilled to perfection and served with a side of steamed vegetables.",
                     CategoryId = 1,
+                    Price = 10.2M,
                     Img = "grilled_salmon.jpg"
                 },
                 new Product
@@ -72,6 +73,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Chicken Parmesan",
                     Description = "Tender breaded chicken breast topped with marinara sauce and melted mozzarella cheese, served with pasta.",
                     CategoryId = 1,
+                    Price = 30.2M,
                     Img = "chicken_parmesan.jpg"
                 },
                 new Product
@@ -80,6 +82,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Beef Burger",
                     Description = "Juicy beef patty topped with cheese, lettuce, tomato, and pickles, served on a toasted bun.",
                     CategoryId = 1,
+                    Price = 10.4M,
                     Img = "beef_burger.jpg"
                 },
                 new Product
@@ -88,6 +91,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Vegetable Stir-Fry",
                     Description = "Assorted fresh vegetables stir-fried to perfection in a flavorful sauce, served over steamed rice.",
                     CategoryId = 1,
+                    Price = 123.2M,
                     Img = "vegetable_stir_fry.jpg"
                 },
                 new Product
@@ -96,6 +100,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Lobster Ravioli",
                     Description = "Homemade ravioli stuffed with succulent lobster meat, served with a creamy tomato sauce.",
                     CategoryId = 1,
+                    Price = 123.54M,
                     Img = "lobster_ravioli.jpg"
                 },
                 new Product
@@ -104,6 +109,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Pork Tenderloin",
                     Description = "Tender pork tenderloin marinated in a savory blend of herbs and spices, grilled to perfection.",
                     CategoryId = 1,
+                    Price = 10.42M,
                     Img = "pork_tenderloin.jpg"
                 },
                 new Product
@@ -112,6 +118,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Eggplant Parmesan",
                     Description = "Slices of breaded and fried eggplant layered with marinara sauce and melted mozzarella cheese.",
                     CategoryId = 1,
+                    Price = 13.21M,
                     Img = "eggplant_parmesan.jpg"
                 },
                 new Product
@@ -120,6 +127,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Shrimp Scampi",
                     Description = "Plump shrimp sautéed in garlic butter and white wine, served over a bed of linguine pasta.",
                     CategoryId = 1,
+                    Price = 112.43M,
                     Img = "shrimp_scampi.jpg"
                 },
                 new Product
@@ -128,6 +136,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Mushroom Risotto",
                     Description = "Creamy risotto cooked with fresh mushrooms, Parmesan cheese, and a hint of truffle oil.",
                     CategoryId = 1,
+                    Price = 132.23M,
                     Img = "mushroom_risotto.jpg"
                 },
                 new Product
@@ -136,6 +145,7 @@ namespace RestoFlow.Infrastructure.Data
                     Name = "Steak Frites",
                     Description = "Grilled steak served with a side of crispy French fries and a tangy dipping sauce.",
                     CategoryId = 1,
+                    Price = 99.19M,
                     Img = "steak_frites.jpg"
                 }
             );

@@ -11,8 +11,8 @@ export const Orders = () => {
 
   return (
     <div>
-      {data.map((order) => (
-        <OrderCard key={order.id} {...order} product={productsData.find((p) => p.id === order.productId)} />
+      {data?.map((order) => (
+        <OrderCard key={order.id} {...order} product={productsData?.find((p) => p.id === order.productId)} />
       ))}
     </div>
   )

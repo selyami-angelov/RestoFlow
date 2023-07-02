@@ -7,6 +7,7 @@ using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Product;
 using RestoFlow.Infrastructure.Data.Models;
 
+
 namespace RestoFlow.Core.Services
 {
     public class ProductService : IProductService
@@ -37,6 +38,12 @@ namespace RestoFlow.Core.Services
             var result = mapper.Map<ProductDTO>(product);
             result.CategoryName = product.Category.Name;
             return result;
+        }
+
+        public async Task<List<ProductDTO>> GetProductByIds(int[] ids)
+        {
+            var products =  repository.All<Product>().Where(p => ids.Any(id => id == p.Id) && !p.IsDeleted).ToList();
+            return products.Select(product => mapper.Map<ProductDTO>(product)).ToList();
         }
 
         public async Task<ProductDTO> CreateProduct(ProductCreateDTO productDto)

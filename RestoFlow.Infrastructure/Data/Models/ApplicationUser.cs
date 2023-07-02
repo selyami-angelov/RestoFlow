@@ -24,6 +24,7 @@ namespace RestoFlow.Infrastructure.Data.Models
         public Role Role { get; set; } = null!;
 
         public List<OccupiedTable> OccupiedTables { get; set; } = null!;
+        public List<Bill> Bills { get; set; } = null!;
 
     }
 }

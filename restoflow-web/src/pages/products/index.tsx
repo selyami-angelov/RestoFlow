@@ -65,7 +65,7 @@ export const Products = () => {
   return (
     <div className="container mx-auto ">
       <div className="flex justify-center flex-wrap gap-4">
-        {productsData.map((product) => (
+        {productsData?.map((product) => (
           <ProductCard key={product.id} {...product} handleCreateOrderClick={openOrderDetailsModal} />
         ))}
       </div>

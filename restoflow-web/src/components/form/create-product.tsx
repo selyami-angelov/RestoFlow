@@ -87,7 +87,7 @@ export const CreateProduct = () => {
       name,
       description,
       price,
-      categoryId: categories.find((c) => c.name === category)?.id,
+      categoryId: categories?.find((c) => c.name === category)?.id,
       img: 'asdasdsadasdasdasdasdasd',
     }
 
@@ -197,7 +197,7 @@ export const CreateProduct = () => {
               required
             >
               {category || <option>-</option>}
-              {categories.map((cat) => (
+              {categories?.map((cat) => (
                 <option key={cat.id}>{cat.name}</option>
               ))}
             </select>

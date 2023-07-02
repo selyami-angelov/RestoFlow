@@ -32,7 +32,7 @@ export const EditProduct = () => {
   }
 
   useEffect(() => {
-    if (typeof updatedProduct === 'object' && !Array.isArray(updatedProduct) && 'id' in updatedProduct) {
+    if (updatedProduct?.id) {
       setCategory('')
       setFileUrl('')
       setName('')
@@ -43,7 +43,7 @@ export const EditProduct = () => {
   }, [updatedProduct])
 
   useEffect(() => {
-    if (typeof product === 'object' && !Array.isArray(product) && 'id' in product) {
+    if (product?.id) {
       console.log('product to edit', product)
       setName(product.name)
       setDescription(product.description)
@@ -100,7 +100,7 @@ export const EditProduct = () => {
       name,
       description,
       price,
-      categoryId: categories.find((c) => c.name === category)?.id,
+      categoryId: categories?.find((c) => c.name === category)?.id,
       img: 'asdasdsadasdasdasdasdasd updated',
     }
 
@@ -210,7 +210,7 @@ export const EditProduct = () => {
               required
             >
               {category || <option>-</option>}
-              {categories.map((cat) => (
+              {categories?.map((cat) => (
                 <option key={cat.id}>{cat.name}</option>
               ))}
             </select>

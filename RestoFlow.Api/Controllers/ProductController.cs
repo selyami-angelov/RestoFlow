@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Product;
 
+using System.Text.Json;
+
 namespace RestoFlow.Api.Controllers
 {
     [Authorize]
@@ -12,6 +14,8 @@ namespace RestoFlow.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService productService;
+
+        public object JsonConvert { get; private set; }
 
         public ProductController(IProductService _productService)
         {
@@ -44,6 +48,20 @@ namespace RestoFlow.Api.Controllers
             }
 
             return Ok(product);
+        }
+
+        /// <summary>
+        /// Retrieves range of products by IDs.
+        /// </summary>
+        /// <returns>A list of products.</returns>
+        [HttpGet("range")]
+        public async Task<IActionResult> GetProdctsByIds([FromQuery(Name = "ids")] string ids)
+        {
+            var productIds = ids.Split(',')
+                       .Select(int.Parse)
+                       .ToArray();
+            var products = await productService.GetProductByIds(productIds);
+            return Ok(products);
         }
 
         /// <summary>

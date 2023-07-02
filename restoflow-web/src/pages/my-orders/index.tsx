@@ -10,8 +10,8 @@ export const MyOrders = () => {
   console.log('my orders', myOrders)
   return (
     <div className="flex flex-row flex-wrap justify-center gap-4">
-      {myOrders.map((order) => (
-        <MyOrderCard key={order.id} {...order} product={products.find((p) => p.id === order.productId)} />
+      {myOrders?.map((order) => (
+        <MyOrderCard key={order.id} {...order} product={products?.find((p) => p.id === order.productId)} />
       ))}
     </div>
   )
