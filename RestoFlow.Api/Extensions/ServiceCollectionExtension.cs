@@ -1,14 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.IdentityModel.Tokens;
-
-using RestoFlow.Core.Common;
+﻿using RestoFlow.Core.Common;
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Services;
-
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace RestoFlow.Api.Extensions
 {
@@ -22,8 +14,9 @@ namespace RestoFlow.Api.Extensions
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<ITableService, TableService>();
             services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
-            
+
 
             return services;
         }

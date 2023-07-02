@@ -13,6 +13,8 @@ namespace RestoFlow.Core.Models.Product
 
         public int CategoryId { get; set; }
 
+        public string CategoryName { get; set; } = null!;
+
         public string Img { get; set; } = null!;
     }
 }

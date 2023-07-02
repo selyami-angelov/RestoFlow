@@ -17,6 +17,8 @@ export interface Product {
   name: string
   description: string
   categoryId: number
+  categoryName: string
+  price: string
   img: string
 }
 
@@ -44,4 +46,10 @@ export interface Order {
   editedBy?: string
   editedById?: string
   editedDate?: string
+}
+
+export interface Category {
+  id: number
+  name: string
+  isDeleted: boolean
 }

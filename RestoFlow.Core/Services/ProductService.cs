@@ -1,6 +1,8 @@
 ﻿
 using AutoMapper;
 
+using Microsoft.EntityFrameworkCore;
+
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Product;
 using RestoFlow.Infrastructure.Data.Models;
@@ -26,13 +28,15 @@ namespace RestoFlow.Core.Services
 
         public async Task<ProductDTO> GetProductById(int id)
         {
-            var product = await repository.GetByIdAsync<Product>(id);
+            var product = await repository.All<Product>().Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+
             if (product.IsDeleted)
             {
                 return null;
             }
-
-            return mapper.Map<ProductDTO>(product);
+            var result = mapper.Map<ProductDTO>(product);
+            result.CategoryName = product.Category.Name;
+            return result;
         }
 
         public async Task<ProductDTO> CreateProduct(ProductCreateDTO productDto)
@@ -46,16 +50,18 @@ namespace RestoFlow.Core.Services
 
         public async Task<ProductDTO> UpdateProduct(int id, ProductEditDTO productDto)
         {
-            var existingProduct = await repository.GetByIdAsync<Product>(id);
+            var existingProduct = await repository.All<Product>().Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
             if (existingProduct == null || existingProduct.IsDeleted)
             {
                 return null;
             }
 
-            mapper.Map(productDto ,existingProduct);    
+            mapper.Map(productDto, existingProduct);
             repository.Update<Product>(existingProduct);
             await repository.SaveChangesAsync();
-            return mapper.Map<ProductDTO>(existingProduct);
+            var result = mapper.Map<ProductDTO>(existingProduct);
+            result.CategoryName = existingProduct.Category.Name;
+            return result;
         }
 
         public async Task<ProductDTO> DeleteProduct(int id)

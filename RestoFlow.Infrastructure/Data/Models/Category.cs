@@ -14,6 +14,8 @@ namespace RestoFlow.Infrastructure.Data.Models
         ErrorMessage = CategoryNameLengthErrorMessage)]
         public string Name { get; set; } = null!;
 
+        public bool IsDeleted { get; set; } = false;
+
         public List<Product> Products { get; set; }
 
     }

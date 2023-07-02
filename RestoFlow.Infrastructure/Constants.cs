@@ -57,7 +57,7 @@
             public const int ProductDescriptionMinLength = 10;
             public const int ProductDescriptionMaxLength = 500;
             public const int ProductPriceMinValue = 0;
-            public const decimal ProductPriceMaxValue = decimal.MaxValue;
+            public const double ProductPriceMaxValue = double.MaxValue;
             public const int ProductPricePrecision = 0;
 
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+using RestoFlow.Core.Models.Category;
 using RestoFlow.Core.Models.Order;
 using RestoFlow.Core.Models.Product;
 using RestoFlow.Core.Models.Reservation;
@@ -32,6 +33,10 @@ namespace RestoFlow.Api.Mappings
 
             CreateMap<Product, ProductEditDTO>();
             CreateMap<ProductEditDTO, Product>();
+
+            // Category
+            CreateMap<Category, CategoryDTO>();
+            CreateMap<CategoryDTO, Category>();
 
             // Order
             CreateMap<Order, OrderCreateDTO>();

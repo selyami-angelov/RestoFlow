@@ -6,12 +6,14 @@ import { Login } from './pages/login'
 import { Root } from './pages/root'
 import { Home } from './pages/home'
 import { Register } from './pages/register'
-import './index.css'
 import { configure } from 'axios-hooks'
 import { AuthContextProvider } from './context/AuthContext'
 import { Products } from './pages/products'
 import { Orders } from './pages/orders'
 import { MyOrders } from './pages/my-orders'
+import { CreateProduct } from './components/form/create-product'
+import './index.css'
+import { EditProduct } from './components/form/edit-product'
 
 const getJWT = () => {
   const userString = localStorage.getItem('user')
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
       {
         path: '/my-orders',
         element: <MyOrders />,
+      },
+      {
+        path: '/create-product',
+        element: <CreateProduct />,
+      },
+      {
+        path: '/edit-product',
+        element: <EditProduct />,
       },
     ],
   },
