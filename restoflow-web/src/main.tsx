@@ -15,6 +15,7 @@ import { CreateProduct } from './components/form/create-product'
 import './index.css'
 import { EditProduct } from './components/form/edit-product'
 import { MyTables } from './pages/my-tables'
+import { MyBills } from './pages/my-bills'
 
 const getJWT = () => {
   const userString = localStorage.getItem('user')
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: '/edit-product',
         element: <EditProduct />,
+      },
+      {
+        path: '/my-bills',
+        element: <MyBills />,
       },
     ],
   },

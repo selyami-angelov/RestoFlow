@@ -2,24 +2,28 @@
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
+using RestoFlow.Core.Models.AwsS3;
 using RestoFlow.Core.Models.Product;
 
 using System.Text.Json;
 
 namespace RestoFlow.Api.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/products")]
     public class ProductController : ControllerBase
     {
         private readonly IProductService productService;
+        private readonly IStorageService storageService;
+        private readonly IConfiguration configuration;
 
         public object JsonConvert { get; private set; }
 
-        public ProductController(IProductService _productService)
+        public ProductController(IProductService _productService, IStorageService _storageService, IConfiguration _configuration)
         {
             productService = _productService;
+            storageService = _storageService;
+            configuration = _configuration;
         }
 
         /// <summary>
@@ -70,15 +74,36 @@ namespace RestoFlow.Api.Controllers
         /// <param name="productDto">The product data.</param>
         /// <returns>The created product.</returns>
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(ProductCreateDTO productDto)
+        public async Task<IActionResult> CreateProduct([FromForm] ProductCreateDTO productDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var createdProduct = await productService.CreateProduct(productDto);
-            return CreatedAtAction(nameof(GetProductById), new { id = createdProduct.Id }, createdProduct);
+            await using var memoryStream = new MemoryStream();
+            await productDto.File.CopyToAsync(memoryStream);
+
+            var fileExtension = Path.GetExtension(productDto.File.FileName);
+            var objName = $"{Guid.NewGuid()}.{fileExtension}";
+
+            var s3Obj = new S3Object()
+            {
+                BucketName = "resto-flow",
+                InputStream = memoryStream,
+                Name = objName
+            };
+
+            var cred = new AwsCredentials()
+            {
+                AwsKey = configuration["AwsConfiguration:AWSAccessKey"],
+                AwsSecretKey = configuration["AwsConfiguration:AWSSecretKey"]
+            };
+
+            var result = await storageService.UploadFileAsync(s3Obj, cred);
+            return Ok(result);
+            //var createdProduct = await productService.CreateProduct(productDto);
+            //return CreatedAtAction(nameof(GetProductById), new { id = createdProduct.Id }, createdProduct);
         }
 
         /// <summary>

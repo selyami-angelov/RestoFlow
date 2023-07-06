@@ -16,6 +16,7 @@ namespace RestoFlow.Api.Extensions
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IBillService, BillService>();
+            services.AddScoped<IStorageService, StorageService>();
 
 
 

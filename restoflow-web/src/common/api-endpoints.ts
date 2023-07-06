@@ -8,5 +8,6 @@ export const API_ENDPOINTS = {
   MY_TABLES: '/tables/my-tables',
   ORDERS: '/orders',
   MY_ORDERS: '/orders/my-orders',
-  CREATE_BILL: '/Bill/create',
+  BILL: '/bill',
+  CREATE_BILL: '/bill/create',
 }

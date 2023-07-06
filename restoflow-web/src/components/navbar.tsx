@@ -27,6 +27,7 @@ const SubNavbar = () => {
         <Navbar.Link onClick={() => navigate('/create-product')}>Create Product</Navbar.Link>
         <Navbar.Link onClick={() => navigate('/edit-product')}>Edit Product</Navbar.Link>
         <Navbar.Link onClick={() => navigate('/my-tables')}>My Tables</Navbar.Link>
+        <Navbar.Link onClick={() => navigate('/my-bills')}>My Bills</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   )

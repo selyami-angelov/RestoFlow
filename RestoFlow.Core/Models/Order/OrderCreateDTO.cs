@@ -10,7 +10,7 @@ namespace RestoFlow.Core.Models.Order
         [Required]
         public int ProductId { get; set; }
 
-        [StringLength(OrderInfoMaxLength, MinimumLength = OrderInfoMinLength,
+        [StringLength(OrderInfoMaxLength,
             ErrorMessage = OrderInfoLengthErrorMessage)]
         public string? Info { get; set; }
 

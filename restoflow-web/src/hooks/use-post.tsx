@@ -19,8 +19,15 @@ export const usePost = <T,>({ url, manual }: Props) => {
     { manual }
   )
 
-  const postData = (postData: PostDataProps) => {
-    executePost(postData)
+  const postData = async (postData: PostDataProps, headers: Record<string, string> = {}) => {
+    const config = {
+      ...postData,
+      headers: {
+        'Content-Type': 'application/json',
+        ...headers,
+      },
+    }
+    executePost(config)
   }
 
   return { data: data ?? [], error, loading, postData }

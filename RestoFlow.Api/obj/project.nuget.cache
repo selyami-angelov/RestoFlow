@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "74SGwEBsz8Ca1jcXxk2AB4yPkVUajClB1j9wWJv/OonlPv1uMpjpGPTqeJJXfQ57IK0O9LQo75iky7slc+gLIQ==",
+  "dgSpecHash": "Q9UJmqtFDbHygbDKPDXJ8YP4beHn3IEFGIjRrsnYOM7oCY0sdoNSO8IozVggQbOKnFKvVnZjgyl5kfMEwvmKAg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sange\\Desktop\\GithubProjects\\RestoFlow\\RestoFlow.Api\\RestoFlow.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sange\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\sange\\.nuget\\packages\\awssdk.core\\3.7.107.11\\awssdk.core.3.7.107.11.nupkg.sha512",
+    "C:\\Users\\sange\\.nuget\\packages\\awssdk.s3\\3.7.107.2\\awssdk.s3.3.7.107.2.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.19\\microsoft.aspnetcore.authentication.jwtbearer.6.0.19.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.1.1\\microsoft.aspnetcore.cors.2.1.1.nupkg.sha512",

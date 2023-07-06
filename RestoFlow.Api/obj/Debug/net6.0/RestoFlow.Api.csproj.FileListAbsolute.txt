@@ -80,3 +80,5 @@ C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\bin\Debug\net6.0\M
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\bin\Debug\net6.0\RestoFlow.Api.xml
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.xml
 C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\obj\Debug\net6.0\RestoFlow.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\bin\Debug\net6.0\AWSSDK.Core.dll
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Api\bin\Debug\net6.0\AWSSDK.S3.dll

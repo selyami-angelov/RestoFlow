@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using Microsoft.AspNetCore.Http;
+
+using System.ComponentModel.DataAnnotations;
 
 using static RestoFlow.Infrastructure.Constants.Product;
 
@@ -26,7 +29,6 @@ namespace RestoFlow.Core.Models.Product
         [Required(ErrorMessage = ProductCategoryIdRequiredErrorMessage)]
         public int CategoryId { get; set; }
 
-        [Required]
-        public string Img { get; set; } = null!;
+        public  IFormFile File { get; set; } = null!;
     }
 }

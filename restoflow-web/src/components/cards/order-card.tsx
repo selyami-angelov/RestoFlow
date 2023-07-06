@@ -1,15 +1,26 @@
-import { Button } from 'flowbite-react'
+import { Button, Modal } from 'flowbite-react'
 import img from '../../../public/assets/burger.jpg'
 import { Order, Product } from '../../pages/models'
-import { HiCheck } from 'react-icons/hi'
+import { HiCheck, HiInformationCircle, HiOutlineInformationCircle, HiOutlineExclamationCircle } from 'react-icons/hi'
 import { usePost } from '../../hooks/use-post'
 import { usePut } from '../../hooks/use-put'
+import { useState } from 'react'
 
 interface Props extends Order {
   product?: Product
 }
 
-export const OrderCard = ({ createdBy, createdDate, productQuantity, editedBy, editedDate, product, id }: Props) => {
+export const OrderCard = ({
+  createdBy,
+  createdDate,
+  productQuantity,
+  editedBy,
+  editedDate,
+  product,
+  id,
+  info,
+}: Props) => {
+  const [isInfoOpen, setIsInfoOpen] = useState(false)
   const { data, putData } = usePut({ manual: true })
 
   const handleDoneClick = () => {
@@ -58,7 +69,17 @@ export const OrderCard = ({ createdBy, createdDate, productQuantity, editedBy, e
               </div>
             )}
           </div>
-          <div className="flex justify-end w-full border-t pt-3">
+          <div className="flex justify-end w-full border-t pt-3 gap-1">
+            {info && (
+              <button
+                onClick={() => setIsInfoOpen(true)}
+                type="button"
+                className="text-white bg-gradient-to-r flex justify-center items-center gap-1 animate-bounce from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-3  text-center"
+              >
+                <HiOutlineExclamationCircle className="h-5 w-5" />
+                Info
+              </button>
+            )}
             <Button color={'success'} size={'xs'} onClick={handleDoneClick}>
               <HiCheck />
               <p className="ml-1">Done</p>
@@ -66,6 +87,15 @@ export const OrderCard = ({ createdBy, createdDate, productQuantity, editedBy, e
           </div>
         </div>
       </a>
+      <Modal show={isInfoOpen} size="md" popup onClose={() => setIsInfoOpen(false)}>
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">{info}</h3>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   )
 }

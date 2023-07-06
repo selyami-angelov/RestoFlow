@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "ubYrRF+XPwvgCNsVqVHLmeJBy22owAEjy8BjcqGAYZ+QUUbE3O/1RSW13SQYRIbv1gRxQlB7wCY2+Po2E48PJA==",
+  "dgSpecHash": "S2P6vCZbL3PsBTT7uXwxO0+kOJUIeN/9x9Zi56YQq5XmZt7DkM/RgCCRXoQkaEJ1NrRklyQNLOgBiJm5e1harg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sange\\Desktop\\GithubProjects\\RestoFlow\\RestoFlow.Core\\RestoFlow.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sange\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\sange\\.nuget\\packages\\awssdk.core\\3.7.107.11\\awssdk.core.3.7.107.11.nupkg.sha512",
+    "C:\\Users\\sange\\.nuget\\packages\\awssdk.s3\\3.7.107.2\\awssdk.s3.3.7.107.2.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.15\\microsoft.aspnetcore.cryptography.internal.6.0.15.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.15\\microsoft.aspnetcore.cryptography.keyderivation.6.0.15.nupkg.sha512",
     "C:\\Users\\sange\\.nuget\\packages\\microsoft.aspnetcore.http\\2.1.34\\microsoft.aspnetcore.http.2.1.34.nupkg.sha512",

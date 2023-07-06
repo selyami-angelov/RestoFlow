@@ -19,6 +19,27 @@ namespace RestoFlow.Core.Services
             mapper = _mapper;
         }
 
+        public async Task<List<BillDTO>> GetUserBillsByDate(DateOnly date, ApplicationUser user)
+        {
+            var bills = await repository.All<Bill>()
+                .Where(b => b.Date.Year == date.Year &&
+                b.Date.Month == date.Month &&
+                b.Date.Day == date.Day)
+                .Include(b => b.Table)
+                .Include(b => b.Orders)
+                     .ThenInclude(o => o.Product)
+                .ToListAsync();
+
+
+            return bills.Select(b =>
+            {
+                var result = mapper.Map<BillDTO>(b);
+                result.TableNumber = b.Table.TableNumber;
+                return result;
+
+            }).ToList();
+        }
+
         public async Task<BillDTO> CreateBill(int tableId, ApplicationUser user)
         {
             var table = repository

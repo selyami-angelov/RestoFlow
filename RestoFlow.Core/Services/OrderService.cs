@@ -62,13 +62,13 @@ namespace RestoFlow.Core.Services
             return result;
         }
 
-        public async Task<List<OrderDTO>> GetUserOrdersByTableId(string userId ,int tableId)
+        public async Task<List<OrderDTO>> GetUserOrdersByTableId(string userId, int tableId)
         {
             var orders = repository.All<Order>()
                 .Include(o => o.OccupiedTables)
                 .Include(o => o.CreatedBy)
                 .Include(o => o.EditedBy)
-                .Where(o => o.OccupiedTables.Any(ot => ot.TableId == tableId) && o.CreatedBy.Id == userId &&!o.isDeleted)
+                .Where(o => o.OccupiedTables.Any(ot => ot.TableId == tableId) && o.CreatedBy.Id == userId && !o.isDeleted)
                 .ToList();
 
             var result = orders.Select(order => MapOrder(order)).ToList();
@@ -79,8 +79,8 @@ namespace RestoFlow.Core.Services
 
         public async Task<List<OrderDTO>> GetOrdersByUserId(string userId)
         {
-            var orders = repository.All<Order>().Where(order => order.CreatedById == userId).ToList();
-            var  result = orders.Select(order => MapOrder(order)).ToList();
+            var orders = repository.All<Order>().Where(order => order.CreatedById == userId && !order.isDeleted && !order.IsServed).ToList();
+            var result = orders.Select(order => MapOrder(order)).ToList();
             return result;
         }
 
@@ -150,7 +150,8 @@ namespace RestoFlow.Core.Services
                 return null;
             }
 
-            await repository.DeleteAsync<Order>(existingOrder);
+
+            existingOrder.isDeleted = true;
             await repository.SaveChangesAsync();
             return mapper.Map<OrderDTO>(existingOrder);
         }
@@ -170,8 +171,8 @@ namespace RestoFlow.Core.Services
                 Info = order.Info,
                 ProductId = order.ProductId,
                 ProductQuantity = order.ProductQuantity,
-                IsReady=order.IsReady,
-                IsServed=order.IsServed,
+                IsReady = order.IsReady,
+                IsServed = order.IsServed,
             };
         }
 

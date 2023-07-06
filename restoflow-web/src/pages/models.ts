@@ -43,6 +43,7 @@ export interface Order {
   isReady: boolean
   productId: number
   productQuantity: number
+  product?: Product
   editedBy?: string
   editedById?: string
   editedDate?: string
@@ -55,9 +56,12 @@ export interface Category {
 }
 
 export interface Bill {
-  id: number
-  tableId: number
-  userId: string
   date: string
+  id: number
+  orders: Partial<Order>[]
+  productQuantity: number
+  tableId: number
+  tableNumber: number
   totalSum: number
+  userId: string
 }

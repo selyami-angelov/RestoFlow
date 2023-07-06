@@ -6,6 +6,7 @@ import { API_ENDPOINTS } from '../../common/api-endpoints'
 import { Category, Product } from '../../pages/models'
 import useAxios from 'axios-hooks'
 import { usePost } from '../../hooks/use-post'
+import axios from 'axios'
 
 export const CreateProduct = () => {
   const [fileUrl, setFileUrl] = useState('')
@@ -18,6 +19,7 @@ export const CreateProduct = () => {
   const [categoryError, setCategoryError] = useState('')
   const [price, setPrice] = useState('')
   const [priceError, setPriceError] = useState('')
+  const [file, setFile] = useState<File>()
   const { data: categories } = useGet<Category[]>({ url: API_ENDPOINTS.CATEGORY })
   const { data: productData, loading, postData } = usePost<Product>({ url: API_ENDPOINTS.PRODUCTS, manual: true })
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -43,8 +45,9 @@ export const CreateProduct = () => {
     if (event.target.files) {
       const file = event.target.files[0]
       const fileUrl = URL.createObjectURL(file)
-      setFileUrl(fileUrl)
 
+      setFile(file)
+      setFileUrl(fileUrl)
       console.log('File selected:', file.name)
     }
   }
@@ -76,22 +79,37 @@ export const CreateProduct = () => {
     setCategory(event.target.value)
   }
 
-  const createProduct = () => {
+  const createProduct = async () => {
     const isValid = validateInputs()
 
     if (!isValid) {
       return
     }
 
-    const data = {
-      name,
-      description,
-      price,
-      categoryId: categories?.find((c) => c.name === category)?.id,
-      img: 'asdasdsadasdasdasdasdasd',
-    }
+    const categoryId = categories?.find((c) => c.name === category)?.id
+    if (file && categoryId) {
+      const formData = new FormData()
+      formData.append('name', name)
+      formData.append('description', description)
+      formData.append('price', price)
+      formData.append('categoryId', categoryId.toString())
+      formData.append('file', file)
 
-    postData({ data })
+      // const data = {
+      //   name,
+      //   description,
+      //   price,
+      //   categoryId: categories?.find((c) => c.name === category)?.id,
+      //   image: file,
+      // }
+      const response = await axios.post('https://localhost:44329/api/products', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+
+      console.log(response)
+    }
   }
 
   const validateInputs = () => {
