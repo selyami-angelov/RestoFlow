@@ -64,4 +64,5 @@ export interface Bill {
   tableNumber: number
   totalSum: number
   userId: string
+  user: string
 }

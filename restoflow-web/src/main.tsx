@@ -16,6 +16,7 @@ import './index.css'
 import { EditProduct } from './components/form/edit-product'
 import { MyTables } from './pages/my-tables'
 import { MyBills } from './pages/my-bills'
+import { AllBills } from './pages/all-bills'
 
 const getJWT = () => {
   const userString = localStorage.getItem('user')
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: '/my-bills',
         element: <MyBills />,
+      },
+      {
+        path: '/all-bills',
+        element: <AllBills />,
       },
     ],
   },

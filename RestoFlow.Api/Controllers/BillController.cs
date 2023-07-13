@@ -40,5 +40,15 @@ namespace RestoFlow.Api.Controllers
             var bills = await billService.GetUserBillsByDate(dateOnly, currentUser);
             return Ok(bills);
         }
+
+        [HttpGet("all/{date}")]
+        public async Task<IActionResult> GetAllBillsByDate(string date)
+        {
+            DateTime dateTime = DateTime.ParseExact(date, "yyyy-MM-dd'T'HH:mm:ss.fff'Z'", null);
+            DateOnly dateOnly = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
+
+            var bills = await billService.GetAllBillsByDate(dateOnly);
+            return Ok(bills);
+        }
     }
 }

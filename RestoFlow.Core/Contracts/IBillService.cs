@@ -7,5 +7,6 @@ namespace RestoFlow.Core.Contracts
     {
         Task<BillDTO> CreateBill(int tableId, ApplicationUser user);
         Task<List<BillDTO>> GetUserBillsByDate(DateOnly date, ApplicationUser user);
+        Task<List<BillDTO>> GetAllBillsByDate(DateOnly date);
     }
 }

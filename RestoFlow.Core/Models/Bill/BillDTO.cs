@@ -1,5 +1,4 @@
 ﻿using RestoFlow.Core.Models.Order;
-using RestoFlow.Core.Models.Product;
 
 namespace RestoFlow.Core.Models.Bill
 {
@@ -12,6 +11,7 @@ namespace RestoFlow.Core.Models.Bill
         public DateTime Date { get; set; }
         public int ProductQuantity { get; set; }
         public List<OrderDTO> Orders { get; set; }
+        public string? User { get; set; }
         public decimal TotalSum { get; set; }
     }
 }

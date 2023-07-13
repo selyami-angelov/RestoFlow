@@ -9,5 +9,6 @@ export const API_ENDPOINTS = {
   ORDERS: '/orders',
   MY_ORDERS: '/orders/my-orders',
   BILL: '/bill',
+  ALL_BILLS: '/bill/all',
   CREATE_BILL: '/bill/create',
 }
