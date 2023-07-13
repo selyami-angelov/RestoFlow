@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.AwsS3;
 using RestoFlow.Core.Models.Product;
 
-using System.Text.Json;
+using System;
 
 namespace RestoFlow.Api.Controllers
 {
@@ -34,6 +33,24 @@ namespace RestoFlow.Api.Controllers
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await productService.GetAllProducts();
+            var s3Obj = new S3ObjectCreateDTO()
+            {
+                BucketName = "resto-flow",
+                Name = "",
+            };
+
+            var cred = new AwsCredentials()
+            {
+                AwsKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
+                AwsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY")
+            };
+
+            foreach (var product in products)
+            {
+                s3Obj.Name = product.Img;
+                var result = storageService.GeneratePresignedUrl(s3Obj, cred);
+                product.Img = result.Result;
+            }
             return Ok(products);
         }
 
@@ -50,6 +67,21 @@ namespace RestoFlow.Api.Controllers
             {
                 return NotFound();
             }
+
+            var s3Obj = new S3ObjectCreateDTO()
+            {
+                BucketName = "resto-flow",
+                Name = product.Img,
+            };
+
+            var cred = new AwsCredentials()
+            {
+                AwsKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
+                AwsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY")
+            };
+
+            var result = storageService.GeneratePresignedUrl(s3Obj, cred);
+            product.Img = result.Result;
 
             return Ok(product);
         }
@@ -81,13 +113,14 @@ namespace RestoFlow.Api.Controllers
                 return BadRequest(ModelState);
             }
 
+
             await using var memoryStream = new MemoryStream();
             await productDto.File.CopyToAsync(memoryStream);
 
             var fileExtension = Path.GetExtension(productDto.File.FileName);
-            var objName = $"{Guid.NewGuid()}.{fileExtension}";
+            var objName = $"{Guid.NewGuid()}{fileExtension}";
 
-            var s3Obj = new S3Object()
+            var s3Obj = new S3ObjectCreateDTO()
             {
                 BucketName = "resto-flow",
                 InputStream = memoryStream,
@@ -96,14 +129,23 @@ namespace RestoFlow.Api.Controllers
 
             var cred = new AwsCredentials()
             {
-                AwsKey = configuration["AwsConfiguration:AWSAccessKey"],
-                AwsSecretKey = configuration["AwsConfiguration:AWSSecretKey"]
+                AwsKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
+                AwsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY")
             };
 
             var result = await storageService.UploadFileAsync(s3Obj, cred);
+
+            if (result.StatusCode == 200)
+            {
+                var createdProduct = await productService.CreateProduct(productDto, objName);
+                return CreatedAtAction(nameof(GetProductById), new { id = createdProduct.Id }, createdProduct);
+            }
+            else
+            {
+                return StatusCode(result.StatusCode, result.Message);
+            }
+
             return Ok(result);
-            //var createdProduct = await productService.CreateProduct(productDto);
-            //return CreatedAtAction(nameof(GetProductById), new { id = createdProduct.Id }, createdProduct);
         }
 
         /// <summary>
@@ -113,20 +155,63 @@ namespace RestoFlow.Api.Controllers
         /// <param name="productDto">The updated product data.</param>
         /// <returns>The updated product.</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(int id, ProductEditDTO productDto)
+        public async Task<IActionResult> UpdateProduct(int id, [FromForm] ProductEditDTO productDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var updatedProduct = await productService.UpdateProduct(id, productDto);
-            if (updatedProduct == null)
+            var objName = "";
+            var existingProduct = await productService.GetProductById(id);
+
+            // Check if a new file was uploaded
+            if (productDto.File != null)
             {
-                return NotFound();
+                await using var memoryStream = new MemoryStream();
+                await productDto.File.CopyToAsync(memoryStream);
+
+                var fileExtension = Path.GetExtension(productDto.File.FileName);
+                objName = $"{Guid.NewGuid()}{fileExtension}";
+
+                var s3Obj = new S3ObjectCreateDTO()
+                {
+                    BucketName = "resto-flow",
+                    InputStream = memoryStream,
+                    Name = objName
+                };
+
+                var cred = new AwsCredentials()
+                {
+                    AwsKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
+                    AwsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY")
+                };
+
+                var result = await storageService.UploadFileAsync(s3Obj, cred);
+
+                if (result.StatusCode == 200)
+                {
+
+                    if (!string.IsNullOrEmpty(existingProduct.Img))
+                    {
+                        var deleteResult = await storageService.DeleteFileAsync(existingProduct.Img, "resto-flow", cred);
+                        if (deleteResult.StatusCode != 200)
+                        {
+                            return StatusCode(deleteResult.StatusCode, deleteResult.Message);
+                        }
+                    }
+
+                }
+                else
+                {
+                    return StatusCode(result.StatusCode, result.Message);
+                }
             }
 
-            return Ok(updatedProduct);
+            // Update the product in the database
+            await productService.UpdateProduct(id, productDto, objName);
+
+            return Ok(existingProduct);
         }
 
         /// <summary>

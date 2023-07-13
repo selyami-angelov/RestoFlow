@@ -6,8 +6,9 @@ import { API_ENDPOINTS } from '../../common/api-endpoints'
 import { Category, Product } from '../../pages/models'
 import { usePost } from '../../hooks/use-post'
 import { usePut } from '../../hooks/use-put'
+import axios from 'axios'
 
-const productId = '1046'
+const productId = '1048'
 
 export const EditProduct = () => {
   const [fileUrl, setFileUrl] = useState('')
@@ -20,6 +21,7 @@ export const EditProduct = () => {
   const [categoryError, setCategoryError] = useState('')
   const [price, setPrice] = useState('')
   const [priceError, setPriceError] = useState('')
+  const [file, setFile] = useState<File>()
   const { data: categories } = useGet<Category[]>({ url: API_ENDPOINTS.CATEGORY })
   const { data: product } = useGet<Product>({ url: `${API_ENDPOINTS.PRODUCTS}/${productId}` })
   const { data: updatedProduct, loading, putData } = usePut<Product>({ manual: true })
@@ -57,6 +59,7 @@ export const EditProduct = () => {
       const file = event.target.files[0]
       const fileUrl = URL.createObjectURL(file)
       setFileUrl(fileUrl)
+      setFile(file)
 
       console.log('File selected:', file.name)
     }
@@ -89,22 +92,32 @@ export const EditProduct = () => {
     setCategory(event.target.value)
   }
 
-  const updateProduct = () => {
+  const updateProduct = async () => {
     const isValid = validateInputs()
 
     if (!isValid) {
       return
     }
 
-    const data = {
-      name,
-      description,
-      price,
-      categoryId: categories?.find((c) => c.name === category)?.id,
-      img: 'asdasdsadasdasdasdasdasd updated',
-    }
+    const categoryId = categories?.find((c) => c.name === category)?.id
+    if (categoryId) {
+      const formData = new FormData()
+      formData.append('name', name)
+      formData.append('description', description)
+      formData.append('price', price)
+      formData.append('categoryId', categoryId.toString())
+      if (file) {
+        formData.append('file', file)
+      }
 
-    putData({ data, url: `${API_ENDPOINTS.PRODUCTS}/${productId}` })
+      const response = await axios.put(`https://localhost:44329/api${API_ENDPOINTS.PRODUCTS}/${productId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+
+      console.log(response)
+    }
   }
 
   const validateInputs = () => {
@@ -150,7 +163,7 @@ export const EditProduct = () => {
       <input onChange={handleFileUpload} ref={fileInputRef} className="hidden" id="file" type="file" />
       <figure className="relative max-w-sm  p-4 pb-8 cursor-pointer ">
         <a href="#">
-          <img className="rounded-lg" src={fileUrl || placeholder} alt="image description" />
+          <img className="rounded-lg" src={fileUrl || product?.img} alt="image description" />
         </a>
         <figcaption className="absolute px-4 text-lg text-white bottom-12">
           <Button onClick={openFileExplorer} size={'xs'}>

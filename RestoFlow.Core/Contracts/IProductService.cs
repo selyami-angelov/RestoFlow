@@ -6,8 +6,8 @@ namespace RestoFlow.Core.Contracts
     {
         Task<List<ProductDTO>> GetAllProducts();
         Task<ProductDTO> GetProductById(int id);
-        Task<ProductDTO> CreateProduct(ProductCreateDTO productDto);
-        Task<ProductDTO> UpdateProduct(int id, ProductEditDTO productDto);
+        Task<ProductDTO> CreateProduct(ProductCreateDTO productDto,string s3objName);
+        Task<ProductDTO> UpdateProduct(int id, ProductEditDTO productDto, string? s3objName);
         Task<ProductDTO> DeleteProduct(int id);
 
         Task<List<ProductDTO>> GetProductByIds(int[] ids);

@@ -29,6 +29,6 @@ namespace RestoFlow.Core.Models.Product
         [Required(ErrorMessage = ProductCategoryIdRequiredErrorMessage)]
         public int CategoryId { get; set; }
 
-        public  IFormFile File { get; set; } = null!;
+        public  IFormFile? File { get; set; }
     }
 }

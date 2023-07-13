@@ -9,6 +9,6 @@ namespace RestoFlow.Core.Models.AwsS3
     public class S3ResponseDTO
     {
         public int StatusCode { get; set; } = 200;
-        public string Mesage { get; set; } = "";
+        public string Message { get; set; } = "";
     }
 }
