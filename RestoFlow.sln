@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
@@ -8,8 +8,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestoFlow.Core", "RestoFlow.Core\RestoFlow.Core.csproj", "{76D0765B-D4CB-4288-BBA1-70EA14467E56}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestoFlow.Infrastructure", "RestoFlow.Infrastructure\RestoFlow.Infrastructure.csproj", "{3C39992A-BF7B-4415-AA94-F82555BA9ABC}"
-EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "restoflow-web", "restoflow-web\restoflow-web.esproj", "{54A852ED-8BE0-40A7-BC6F-3ECC83DA1080}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
