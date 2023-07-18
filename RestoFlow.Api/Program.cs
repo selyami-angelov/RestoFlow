@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,9 +5,6 @@ using RestoFlow.Api.Extensions;
 using RestoFlow.Api.Middlewares;
 using RestoFlow.Infrastructure.Data;
 using RestoFlow.Infrastructure.Data.Models;
-
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 

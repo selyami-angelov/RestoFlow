@@ -1,0 +1,14 @@
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\bin\Debug\net6.0\RestoFlow.Infrastructure.deps.json
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\bin\Debug\net6.0\RestoFlow.Infrastructure.runtimeconfig.json
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\bin\Debug\net6.0\RestoFlow.Infrastructure.dll
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\bin\Debug\net6.0\RestoFlow.Infrastructure.pdb
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\RestoFlow.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\RestoFlow.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\RestoFlow.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\RestoFlow.Infrastructure.AssemblyInfo.cs
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\RestoFlow.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\RestoFlow.Infrastructure.dll
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\refint\RestoFlow.Infrastructure.dll
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\RestoFlow.Infrastructure.pdb
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\RestoFlow.Infrastructure.genruntimeconfig.cache
+C:\Users\sange\Desktop\GithubProjects\RestoFlow\RestoFlow.Infrastructure\obj\Debug\net6.0\ref\RestoFlow.Infrastructure.dll
