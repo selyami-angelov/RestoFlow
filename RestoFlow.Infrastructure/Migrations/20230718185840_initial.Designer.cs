@@ -12,8 +12,8 @@ using RestoFlow.Infrastructure.Data;
 namespace RestoFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(RestoFlowDbContext))]
-    [Migration("20230627045852_update-order")]
-    partial class updateorder
+    [Migration("20230718185840_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -209,9 +209,6 @@ namespace RestoFlow.Infrastructure.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -232,9 +229,38 @@ namespace RestoFlow.Infrastructure.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("RoleId");
-
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Bill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalSum")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Bills");
                 });
 
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Category", b =>
@@ -244,6 +270,9 @@ namespace RestoFlow.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -258,21 +287,25 @@ namespace RestoFlow.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            IsDeleted = false,
                             Name = "Main Dishes"
                         },
                         new
                         {
                             Id = 2,
+                            IsDeleted = false,
                             Name = "Desserts"
                         },
                         new
                         {
                             Id = 3,
+                            IsDeleted = false,
                             Name = "Beverages"
                         },
                         new
                         {
                             Id = 4,
+                            IsDeleted = false,
                             Name = "Salads"
                         });
                 });
@@ -305,6 +338,9 @@ namespace RestoFlow.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("BillId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedById")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -319,9 +355,11 @@ namespace RestoFlow.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Info")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsReady")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsServed")
                         .HasColumnType("bit");
@@ -329,7 +367,15 @@ namespace RestoFlow.Infrastructure.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("BillId");
 
                     b.HasIndex("CreatedById");
 
@@ -368,391 +414,58 @@ namespace RestoFlow.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            Description = "Fresh salmon fillet grilled to perfection and served with a side of steamed vegetables.",
-                            Img = "grilled_salmon.jpg",
-                            IsDeleted = false,
-                            Name = "Grilled Salmon"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 1,
-                            Description = "Tender breaded chicken breast topped with marinara sauce and melted mozzarella cheese, served with pasta.",
-                            Img = "chicken_parmesan.jpg",
-                            IsDeleted = false,
-                            Name = "Chicken Parmesan"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 1,
-                            Description = "Juicy beef patty topped with cheese, lettuce, tomato, and pickles, served on a toasted bun.",
-                            Img = "beef_burger.jpg",
-                            IsDeleted = false,
-                            Name = "Beef Burger"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 1,
-                            Description = "Assorted fresh vegetables stir-fried to perfection in a flavorful sauce, served over steamed rice.",
-                            Img = "vegetable_stir_fry.jpg",
-                            IsDeleted = false,
-                            Name = "Vegetable Stir-Fry"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CategoryId = 1,
-                            Description = "Homemade ravioli stuffed with succulent lobster meat, served with a creamy tomato sauce.",
-                            Img = "lobster_ravioli.jpg",
-                            IsDeleted = false,
-                            Name = "Lobster Ravioli"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CategoryId = 1,
-                            Description = "Tender pork tenderloin marinated in a savory blend of herbs and spices, grilled to perfection.",
-                            Img = "pork_tenderloin.jpg",
-                            IsDeleted = false,
-                            Name = "Pork Tenderloin"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CategoryId = 1,
-                            Description = "Slices of breaded and fried eggplant layered with marinara sauce and melted mozzarella cheese.",
-                            Img = "eggplant_parmesan.jpg",
-                            IsDeleted = false,
-                            Name = "Eggplant Parmesan"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CategoryId = 1,
-                            Description = "Plump shrimp sautéed in garlic butter and white wine, served over a bed of linguine pasta.",
-                            Img = "shrimp_scampi.jpg",
-                            IsDeleted = false,
-                            Name = "Shrimp Scampi"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CategoryId = 1,
-                            Description = "Creamy risotto cooked with fresh mushrooms, Parmesan cheese, and a hint of truffle oil.",
-                            Img = "mushroom_risotto.jpg",
-                            IsDeleted = false,
-                            Name = "Mushroom Risotto"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CategoryId = 1,
-                            Description = "Grilled steak served with a side of crispy French fries and a tangy dipping sauce.",
-                            Img = "steak_frites.jpg",
-                            IsDeleted = false,
-                            Name = "Steak Frites"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CategoryId = 2,
-                            Description = "Classic New York-style cheesecake with a buttery graham cracker crust and creamy filling.",
-                            Img = "cheesecake.jpg",
-                            IsDeleted = false,
-                            Name = "Cheesecake"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CategoryId = 2,
-                            Description = "Layers of espresso-soaked ladyfingers and creamy mascarpone cheese, dusted with cocoa powder.",
-                            Img = "tiramisu.jpg",
-                            IsDeleted = false,
-                            Name = "Tiramisu"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CategoryId = 2,
-                            Description = "Homemade apple pie with a flaky crust and a sweet and tangy apple filling.",
-                            Img = "apple_pie.jpg",
-                            IsDeleted = false,
-                            Name = "Apple Pie"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CategoryId = 2,
-                            Description = "Velvety smooth chocolate mousse topped with a dollop of whipped cream and chocolate shavings.",
-                            Img = "chocolate_mousse.jpg",
-                            IsDeleted = false,
-                            Name = "Chocolate Mousse"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CategoryId = 2,
-                            Description = "Light and fluffy shortcake layered with fresh strawberries and whipped cream.",
-                            Img = "strawberry_shortcake.jpg",
-                            IsDeleted = false,
-                            Name = "Strawberry Shortcake"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CategoryId = 2,
-                            Description = "Tangy lemon filling in a buttery tart shell, topped with a dusting of powdered sugar.",
-                            Img = "lemon_tart.jpg",
-                            IsDeleted = false,
-                            Name = "Lemon Tart"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CategoryId = 2,
-                            Description = "Smooth and creamy Italian dessert made with sweetened cream and gelatin.",
-                            Img = "panna_cotta.jpg",
-                            IsDeleted = false,
-                            Name = "Panna Cotta"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CategoryId = 2,
-                            Description = "Moist and velvety red velvet cake with layers of cream cheese frosting.",
-                            Img = "red_velvet_cake.jpg",
-                            IsDeleted = false,
-                            Name = "Red Velvet Cake"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CategoryId = 2,
-                            Description = "Refreshing pie made with tangy key lime juice and a sweet graham cracker crust.",
-                            Img = "key_lime_pie.jpg",
-                            IsDeleted = false,
-                            Name = "Key Lime Pie"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CategoryId = 2,
-                            Description = "Classic homemade chocolate chip cookies with gooey chocolate chips and a soft, chewy texture.",
-                            Img = "chocolate_chip_cookies.jpg",
-                            IsDeleted = false,
-                            Name = "Chocolate Chip Cookies"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CategoryId = 3,
-                            Description = "Chilled coffee served over ice with a splash of milk and a hint of sweetness.",
-                            Img = "iced_coffee.jpg",
-                            IsDeleted = false,
-                            Name = "Iced Coffee"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CategoryId = 3,
-                            Description = "Refreshing smoothie made with ripe mangoes, yogurt, and a touch of honey.",
-                            Img = "mango_smoothie.jpg",
-                            IsDeleted = false,
-                            Name = "Mango Smoothie"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CategoryId = 3,
-                            Description = "Steeped green tea leaves with a delicate and soothing flavor.",
-                            Img = "green_tea.jpg",
-                            IsDeleted = false,
-                            Name = "Green Tea"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            CategoryId = 3,
-                            Description = "Freshly squeezed orange juice packed with vitamin C and a burst of citrus flavor.",
-                            Img = "orange_juice.jpg",
-                            IsDeleted = false,
-                            Name = "Orange Juice"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            CategoryId = 3,
-                            Description = "Homemade lemonade made with freshly squeezed lemons and a touch of sweetness.",
-                            Img = "lemonade.jpg",
-                            IsDeleted = false,
-                            Name = "Lemonade"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            CategoryId = 3,
-                            Description = "Classic Cuban cocktail made with rum, fresh mint leaves, lime juice, and a hint of sweetness.",
-                            Img = "mojito.jpg",
-                            IsDeleted = false,
-                            Name = "Mojito"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            CategoryId = 3,
-                            Description = "Rich and creamy hot chocolate topped with whipped cream and chocolate shavings.",
-                            Img = "hot_chocolate.jpg",
-                            IsDeleted = false,
-                            Name = "Hot Chocolate"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            CategoryId = 3,
-                            Description = "Bubbly and refreshing carbonated water with a clean and crisp taste.",
-                            Img = "sparkling_water.jpg",
-                            IsDeleted = false,
-                            Name = "Sparkling Water"
-                        },
-                        new
-                        {
-                            Id = 29,
-                            CategoryId = 3,
-                            Description = "Chilled black tea served over ice, optionally sweetened and garnished with a slice of lemon.",
-                            Img = "iced_tea.jpg",
-                            IsDeleted = false,
-                            Name = "Iced Tea"
-                        },
-                        new
-                        {
-                            Id = 30,
-                            CategoryId = 3,
-                            Description = "A tropical blend of assorted fruit juices with a sweet and tangy flavor.",
-                            Img = "fruit_punch.jpg",
-                            IsDeleted = false,
-                            Name = "Fruit Punch"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            CategoryId = 4,
-                            Description = "Classic Caesar salad with crisp romaine lettuce, Parmesan cheese, croutons, and tangy Caesar dressing.",
-                            Img = "caesar_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Caesar Salad"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            CategoryId = 4,
-                            Description = "Fresh mozzarella cheese, ripe tomatoes, and basil leaves drizzled with balsamic glaze and olive oil.",
-                            Img = "caprese_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Caprese Salad"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            CategoryId = 4,
-                            Description = "Classic Greek salad with fresh lettuce, tomatoes, cucumbers, olives, feta cheese, and a tangy dressing.",
-                            Img = "greek_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Greek Salad"
-                        },
-                        new
-                        {
-                            Id = 34,
-                            CategoryId = 4,
-                            Description = "Assorted greens topped with grilled chicken, avocado, bacon, hard-boiled eggs, and blue cheese crumbles.",
-                            Img = "cobb_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Cobb Salad"
-                        },
-                        new
-                        {
-                            Id = 35,
-                            CategoryId = 4,
-                            Description = "Fresh spinach leaves topped with sliced strawberries, goat cheese, and a light vinaigrette dressing.",
-                            Img = "spinach_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Spinach Salad"
-                        },
-                        new
-                        {
-                            Id = 36,
-                            CategoryId = 4,
-                            Description = "A French salad made with tuna, boiled eggs, green beans, potatoes, olives, and a Dijon vinaigrette.",
-                            Img = "nicoise_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Nicoise Salad"
-                        },
-                        new
-                        {
-                            Id = 37,
-                            CategoryId = 4,
-                            Description = "A refreshing salad made with crisp apples, celery, grapes, walnuts, and a creamy dressing.",
-                            Img = "waldorf_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Waldorf Salad"
-                        },
-                        new
-                        {
-                            Id = 38,
-                            CategoryId = 4,
-                            Description = "A vibrant salad with mixed greens, grilled corn, black beans, tomatoes, avocado, and a zesty dressing.",
-                            Img = "mexican_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Mexican Salad"
-                        },
-                        new
-                        {
-                            Id = 39,
-                            CategoryId = 4,
-                            Description = "A protein-packed salad made with flaky tuna, crunchy vegetables, and a tangy mayonnaise dressing.",
-                            Img = "tuna_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Tuna Salad"
-                        },
-                        new
-                        {
-                            Id = 40,
-                            CategoryId = 4,
-                            Description = "A nutritious salad made with quinoa, fresh vegetables, herbs, and a zesty lemon dressing.",
-                            Img = "quinoa_salad.jpg",
-                            IsDeleted = false,
-                            Name = "Quinoa Salad"
-                        });
                 });
 
-            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Role", b =>
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Reservation", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservationId"), 1L, 1);
 
-                    b.Property<string>("Name")
+                    b.Property<bool>("IsCancelled")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PartySize")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ReservationId");
 
-                    b.ToTable("Roles");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.ReservationTable", b =>
+                {
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TableId", "ReservationId");
+
+                    b.HasIndex("ReservationId");
+
+                    b.ToTable("ReservationTable");
                 });
 
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Table", b =>
@@ -1007,33 +720,41 @@ namespace RestoFlow.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.ApplicationUser", b =>
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Bill", b =>
                 {
-                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.OccupiedTable", b =>
-                {
-                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("RestoFlow.Infrastructure.Data.Models.Table", "Table")
-                        .WithMany()
+                        .WithMany("Bills")
                         .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("RestoFlow.Infrastructure.Data.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Bills")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Table");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.OccupiedTable", b =>
+                {
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Order", "Order")
+                        .WithMany("OccupiedTables")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Table", "Table")
+                        .WithMany("OccupiedTables")
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.ApplicationUser", "User")
+                        .WithMany("OccupiedTables")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1047,6 +768,10 @@ namespace RestoFlow.Infrastructure.Migrations
 
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Order", b =>
                 {
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Bill", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("BillId");
+
                     b.HasOne("RestoFlow.Infrastructure.Data.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
@@ -1081,9 +806,70 @@ namespace RestoFlow.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Reservation", b =>
+                {
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.ReservationTable", b =>
+                {
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Reservation", "Reservation")
+                        .WithMany("ReservationTables")
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("RestoFlow.Infrastructure.Data.Models.Table", "Table")
+                        .WithMany("ReservationTables")
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Reservation");
+
+                    b.Navigation("Table");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Bills");
+
+                    b.Navigation("OccupiedTables");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Bill", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Order", b =>
+                {
+                    b.Navigation("OccupiedTables");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Reservation", b =>
+                {
+                    b.Navigation("ReservationTables");
+                });
+
+            modelBuilder.Entity("RestoFlow.Infrastructure.Data.Models.Table", b =>
+                {
+                    b.Navigation("Bills");
+
+                    b.Navigation("OccupiedTables");
+
+                    b.Navigation("ReservationTables");
                 });
 #pragma warning restore 612, 618
         }

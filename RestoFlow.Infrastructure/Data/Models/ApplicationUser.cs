@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 using static RestoFlow.Infrastructure.Constants.User;
 
@@ -16,12 +15,6 @@ namespace RestoFlow.Infrastructure.Data.Models
         [Required(ErrorMessage = LastNameRequiredErrorMessage)]
         [StringLength(LastNameMaxLength, MinimumLength = LastNameMinLength, ErrorMessage = LastNameLengthErrorMessage)]
         public string LastName { get; set; } = null!;
-
-        [Required(ErrorMessage = RoleRequiredErrorMessage)]
-        public int RoleId { get; set; }
-
-        [ForeignKey(nameof(RoleId))]
-        public Role Role { get; set; } = null!;
 
         public List<OccupiedTable> OccupiedTables { get; set; } = null!;
         public List<Bill> Bills { get; set; } = null!;

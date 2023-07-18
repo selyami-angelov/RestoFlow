@@ -50,10 +50,7 @@ namespace RestoFlow.Api.Controllers
 
             try
             {
-                var role = context.Roles.FirstOrDefault(r => r.Id == 1);
                 var user = mapper.Map<ApplicationUser>(model);
-                user.Role = role;
-                user.RoleId = role.Id;
                 user.UserName = model.Email;
 
                 var result = await userManager.CreateAsync(user, model.Password);

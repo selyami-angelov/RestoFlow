@@ -22,7 +22,7 @@ namespace RestoFlow.Infrastructure.Data
             FluenAPI.ConfigureBills(modelBuilder);
 
             DbSeeder.SeedCategories(modelBuilder);
-            DbSeeder.SeedProducts(modelBuilder);
+            //DbSeeder.SeedProducts(modelBuilder);
             DbSeeder.SeedTables(modelBuilder);
 
         }
@@ -32,8 +32,8 @@ namespace RestoFlow.Infrastructure.Data
         public DbSet<OccupiedTable> OccupiedTables { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Bill> Bills { get; set; }
     }
 }
