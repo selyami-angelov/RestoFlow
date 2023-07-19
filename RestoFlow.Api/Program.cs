@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 using RestoFlow.Api.Extensions;
 using RestoFlow.Api.Middlewares;
@@ -10,7 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+bool isLocalHost = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+
+
+var connectionString = isLocalHost
+           ? Environment.GetEnvironmentVariable("CONNECTION_STRING")
+           : builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<RestoFlowDbContext>(options =>
     options.UseSqlServer(connectionString));
 
