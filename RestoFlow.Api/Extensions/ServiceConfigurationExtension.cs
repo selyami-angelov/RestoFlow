@@ -7,9 +7,7 @@ using Microsoft.OpenApi.Models;
 
 using RestoFlow.Api.Mappings;
 
-using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
-using System.Security.Claims;
 using System.Text;
 
 namespace RestoFlow.Api.Extensions

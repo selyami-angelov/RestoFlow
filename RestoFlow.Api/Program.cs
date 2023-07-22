@@ -42,6 +42,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors("AllowOrigins");
 
+
 app.UseHttpsRedirection();
 
 app.UseJwtMiddleware();

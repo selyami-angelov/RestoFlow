@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Order;
 using RestoFlow.Infrastructure.Data.Models;
-
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 namespace RestoFlow.Api.Controllers
 {
