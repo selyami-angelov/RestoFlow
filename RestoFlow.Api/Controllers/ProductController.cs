@@ -15,14 +15,17 @@ namespace RestoFlow.Api.Controllers
         private readonly IProductService productService;
         private readonly IStorageService storageService;
         private readonly IConfiguration configuration;
+        private readonly IAwsCredentialsService awsCredentialsService;
+        bool isLocalHost = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 
         public object JsonConvert { get; private set; }
 
-        public ProductController(IProductService _productService, IStorageService _storageService, IConfiguration _configuration)
+        public ProductController(IProductService _productService, IStorageService _storageService, IConfiguration _configuration, IAwsCredentialsService _awsCredentialsService)
         {
             productService = _productService;
             storageService = _storageService;
             configuration = _configuration;
+            awsCredentialsService = _awsCredentialsService;
         }
 
         /// <summary>
@@ -39,11 +42,7 @@ namespace RestoFlow.Api.Controllers
                 Name = "",
             };
 
-            var cred = new AwsCredentials()
-            {
-                AwsKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
-                AwsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY")
-            };
+            var cred = isLocalHost ? awsCredentialsService.GetAwsCredentialsFromEnvironment() : awsCredentialsService.GetAwsCredentialsFromAppSettings();
 
             foreach (var product in products)
             {
@@ -74,11 +73,7 @@ namespace RestoFlow.Api.Controllers
                 Name = product.Img,
             };
 
-            var cred = new AwsCredentials()
-            {
-                AwsKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
-                AwsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY")
-            };
+            var cred = isLocalHost ? awsCredentialsService.GetAwsCredentialsFromEnvironment() : awsCredentialsService.GetAwsCredentialsFromAppSettings();
 
             var result = storageService.GeneratePresignedUrl(s3Obj, cred);
             product.Img = result.Result;
@@ -127,11 +122,7 @@ namespace RestoFlow.Api.Controllers
                 Name = objName
             };
 
-            var cred = new AwsCredentials()
-            {
-                AwsKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
-                AwsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY")
-            };
+            var cred = isLocalHost ? awsCredentialsService.GetAwsCredentialsFromEnvironment() : awsCredentialsService.GetAwsCredentialsFromAppSettings();
 
             var result = await storageService.UploadFileAsync(s3Obj, cred);
 
@@ -181,11 +172,7 @@ namespace RestoFlow.Api.Controllers
                     Name = objName
                 };
 
-                var cred = new AwsCredentials()
-                {
-                    AwsKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
-                    AwsSecretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY")
-                };
+                var cred = isLocalHost ? awsCredentialsService.GetAwsCredentialsFromEnvironment() : awsCredentialsService.GetAwsCredentialsFromAppSettings();
 
                 var result = await storageService.UploadFileAsync(s3Obj, cred);
 

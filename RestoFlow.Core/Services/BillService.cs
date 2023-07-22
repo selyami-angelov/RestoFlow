@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Bill;
-using RestoFlow.Core.Models.User;
 using RestoFlow.Infrastructure.Data.Models;
 
 namespace RestoFlow.Core.Services
