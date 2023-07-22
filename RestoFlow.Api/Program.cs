@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 using RestoFlow.Api.Extensions;
 using RestoFlow.Api.Middlewares;

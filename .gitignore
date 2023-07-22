@@ -1,0 +1,81 @@
+# Visual Studio / ReSharper / Rider
+.vs/
+*_ReSharper*/
+*.sln.iml
+.idea/
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Oo]bj/
+[Bb]in/
+TestResults/
+
+# NuGet packages
+*.nuget.props
+*.nuget.targets
+**/packages/
+*.lock.json
+*.paket.restore.json
+paket-files/
+paket-files-cache/
+
+# User-specific files
+*.userprefs
+*.userprofile
+
+# Roslyn cache
+*.ide/
+*.ipch/
+*.opendb/
+
+# Build cache
+*.dll
+*.pdb
+*.exe
+*.cache
+*.log
+*.vsix
+
+# Core project-specific files
+/Core/bin/
+/Core/obj/
+/Core/Config/appsettings.json
+/Core/Config/appsettings.Development.json
+
+# API project-specific files
+/Api/bin/
+/Api/obj/
+/Api/appsettings.json
+/Api/appsettings.Development.json
+
+# Infrastructure project-specific files
+/Infrastructure/bin/
+/Infrastructure/obj/
+
+# Any other directories or files you want to exclude from Git tracking
+
+# Exclude environment-specific files
+**/*.env
+
+# Exclude sensitive files with secrets (e.g., API keys, connection strings)
+**/*.secrets
+
+# Exclude any other files or directories specific to your project that should not be tracked by Git
+
+# Ignore Visual Studio Code settings
+.vscode/
+*.code-workspace
+
+# Ignore JetBrains Rider settings
+.idea/
+
+# Ignore .NET Core configuration files
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
