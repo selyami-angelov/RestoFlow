@@ -54,6 +54,9 @@ namespace RestoFlow.Infrastructure.Data
             );
         }
 
+
+
+
         public static void SeedProducts(ModelBuilder modelBuilder)
         {
             // Main Dishes
@@ -402,14 +405,21 @@ namespace RestoFlow.Infrastructure.Data
                 }
             );
 
-            // Orders
+
+
+
+
+        }
+
+        public static void SeedOrders(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Order>().HasData(
             new Order
             {
                 Id = 1,
                 ProductId = 1,
                 Info = "Order 1 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -418,7 +428,7 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 2,
                 ProductId = 2,
                 Info = "Order 2 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -427,7 +437,7 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 3,
                 ProductId = 3,
                 Info = "Order 3 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -436,7 +446,7 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 4,
                 ProductId = 4,
                 Info = "Order 4 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -445,7 +455,7 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 5,
                 ProductId = 5,
                 Info = "Order 5 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -454,7 +464,7 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 6,
                 ProductId = 6,
                 Info = "Order 6 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -463,7 +473,7 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 7,
                 ProductId = 7,
                 Info = "Order 7 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -472,7 +482,7 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 8,
                 ProductId = 8,
                 Info = "Order 8 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -481,7 +491,7 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 9,
                 ProductId = 9,
                 Info = "Order 9 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             },
@@ -490,81 +500,87 @@ namespace RestoFlow.Infrastructure.Data
                 Id = 10,
                 ProductId = 10,
                 Info = "Order 10 information",
-                CreatedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                CreatedById = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 CreatedDate = DateTime.UtcNow,
                 IsServed = false
             }
         );
+        }
 
-            // OccupiedTables
+        public static void SeedOccupiedTables(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<OccupiedTable>().HasData(
             new OccupiedTable
             {
                 TableId = 1,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 1
             },
             new OccupiedTable
             {
                 TableId = 2,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 2
             },
             new OccupiedTable
             {
                 TableId = 3,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 3
             },
             new OccupiedTable
             {
                 TableId = 4,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 4
             },
             new OccupiedTable
             {
                 TableId = 5,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 5
             },
             new OccupiedTable
             {
                 TableId = 6,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 6
             },
             new OccupiedTable
             {
                 TableId = 7,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 7
             },
             new OccupiedTable
             {
                 TableId = 8,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 8
             },
             new OccupiedTable
             {
                 TableId = 9,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 9
             },
             new OccupiedTable
             {
                 TableId = 10,
-                UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                 OrderId = 10
             });
 
+        }
+
+        public static void SeedReservations(ModelBuilder modelBuilder)
+        {
             // Reservation
             modelBuilder.Entity<Reservation>().HasData(
                 new Reservation
                 {
                     ReservationId = 1,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(1),
                     PartySize = 4,
                     IsCancelled = false
@@ -572,7 +588,7 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 2,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(2),
                     PartySize = 6,
                     IsCancelled = false
@@ -580,7 +596,7 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 3,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(3),
                     PartySize = 2,
                     IsCancelled = false
@@ -588,7 +604,7 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 4,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(4),
                     PartySize = 5,
                     IsCancelled = false
@@ -596,7 +612,7 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 5,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(5),
                     PartySize = 3,
                     IsCancelled = false
@@ -604,7 +620,7 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 6,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(6),
                     PartySize = 8,
                     IsCancelled = false
@@ -612,7 +628,7 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 7,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(7),
                     PartySize = 2,
                     IsCancelled = false
@@ -620,7 +636,7 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 8,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(8),
                     PartySize = 4,
                     IsCancelled = false
@@ -628,7 +644,7 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 9,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(9),
                     PartySize = 6,
                     IsCancelled = false
@@ -636,13 +652,16 @@ namespace RestoFlow.Infrastructure.Data
                 new Reservation
                 {
                     ReservationId = 10,
-                    UserId = "b08ba7ee-0960-4656-baf4-980b1d6b88df",
+                    UserId = "b56a186b-3b88-4f7c-be1f-cab791090685",
                     ReservationDate = DateTime.Now.AddDays(10),
                     PartySize = 3,
                     IsCancelled = false
                 }
                 );
-            // ReservationTable
+        }
+
+        public static void SeedReservationTables(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<ReservationTable>().HasData(
                 new ReservationTable { ReservationId = 1, TableId = 1 },
                 new ReservationTable { ReservationId = 2, TableId = 2 },

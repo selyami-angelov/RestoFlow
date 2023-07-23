@@ -23,7 +23,7 @@ namespace RestoFlow.Core.Services
 
         public async Task<List<ProductDTO>> GetAllProducts()
         {
-            var products = repository.All<Product>().Where(p => !p.IsDeleted);
+            var products = repository.All<Product>().Include(p => p.Category).Where(p => !p.IsDeleted);
             return products.Select(product => mapper.Map<ProductDTO>(product)).ToList();
         }
 
