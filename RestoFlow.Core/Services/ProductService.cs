@@ -66,7 +66,7 @@ namespace RestoFlow.Core.Services
 
             mapper.Map(productDto, existingProduct);
 
-            if (s3objName != null)
+            if (!string.IsNullOrEmpty(s3objName))
             {
                 existingProduct.Img = s3objName;
             }
