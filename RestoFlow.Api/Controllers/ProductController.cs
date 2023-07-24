@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Amazon.Runtime.Internal.Endpoints.StandardLibrary;
+
+using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.AwsS3;
@@ -36,20 +38,6 @@ namespace RestoFlow.Api.Controllers
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await productService.GetAllProducts();
-            var s3Obj = new S3ObjectCreateDTO()
-            {
-                BucketName = "resto-flow",
-                Name = "",
-            };
-
-            var cred = isLocalHost ? awsCredentialsService.GetAwsCredentialsFromEnvironment() : awsCredentialsService.GetAwsCredentialsFromAppSettings();
-
-            foreach (var product in products)
-            {
-                s3Obj.Name = product.Img;
-                var result = storageService.GeneratePresignedUrl(s3Obj, cred);
-                product.Img = result.Result;
-            }
             return Ok(products);
         }
 
@@ -128,7 +116,8 @@ namespace RestoFlow.Api.Controllers
 
             if (result.StatusCode == 200)
             {
-                var createdProduct = await productService.CreateProduct(productDto, objName);
+                string objectUrl = $"https://{s3Obj.BucketName}.s3.eu-central-1.amazonaws.com/{objName}";
+                var createdProduct = await productService.CreateProduct(productDto, objectUrl);
                 return CreatedAtAction(nameof(GetProductById), new { id = createdProduct.Id }, createdProduct);
             }
             else
@@ -181,7 +170,8 @@ namespace RestoFlow.Api.Controllers
 
                     if (!string.IsNullOrEmpty(existingProduct.Img))
                     {
-                        var deleteResult = await storageService.DeleteFileAsync(existingProduct.Img, "resto-flow", cred);
+                        string objectKey = existingProduct.Img.TrimStart('/');
+                        var deleteResult = await storageService.DeleteFileAsync(objectKey, "resto-flow", cred);
                         if (deleteResult.StatusCode != 200)
                         {
                             return StatusCode(deleteResult.StatusCode, deleteResult.Message);
@@ -196,7 +186,8 @@ namespace RestoFlow.Api.Controllers
             }
 
             // Update the product in the database
-            await productService.UpdateProduct(id, productDto, objName);
+            string objectUrl = $"https://resto-flow.s3.eu-central-1.amazonaws.com/{objName}";
+            await productService.UpdateProduct(id, productDto, objectUrl);
 
             return Ok(existingProduct);
         }

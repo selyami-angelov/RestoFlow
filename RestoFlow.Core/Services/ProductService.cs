@@ -46,17 +46,17 @@ namespace RestoFlow.Core.Services
             return products.Select(product => mapper.Map<ProductDTO>(product)).ToList();
         }
 
-        public async Task<ProductDTO> CreateProduct(ProductCreateDTO productDto, string s3objName)
+        public async Task<ProductDTO> CreateProduct(ProductCreateDTO productDto, string objectUrl)
         {
             var product = mapper.Map<Product>(productDto);
-            product.Img = s3objName;
+            product.Img = objectUrl;
             await repository.AddAsync<Product>(product);
             await repository.SaveChangesAsync();
             var createdProductDto = mapper.Map<ProductDTO>(product);
             return createdProductDto;
         }
 
-        public async Task<ProductDTO> UpdateProduct(int id, ProductEditDTO productDto, string? s3objName)
+        public async Task<ProductDTO> UpdateProduct(int id, ProductEditDTO productDto, string? objectUrl)
         {
             var existingProduct = await repository.All<Product>().Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
             if (existingProduct == null || existingProduct.IsDeleted)
@@ -66,9 +66,9 @@ namespace RestoFlow.Core.Services
 
             mapper.Map(productDto, existingProduct);
 
-            if (!string.IsNullOrEmpty(s3objName))
+            if (!string.IsNullOrEmpty(objectUrl))
             {
-                existingProduct.Img = s3objName;
+                existingProduct.Img = objectUrl;
             }
             repository.Update<Product>(existingProduct);
             await repository.SaveChangesAsync();

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Order;
+using RestoFlow.Core.Models.Product;
 using RestoFlow.Infrastructure.Data.Models;
 
 
@@ -54,6 +55,7 @@ namespace RestoFlow.Core.Services
             var orders = repository.All<Order>()
                 .Include(o => o.CreatedBy)
                 .Include(o => o.EditedBy)
+                .Include(o => o.Product)
                 .Where(order => !order.isDeleted && !order.IsReady).ToList();
 
             var result = orders.Select(order => MapOrder(order)).ToList();
@@ -170,6 +172,7 @@ namespace RestoFlow.Core.Services
                 EditedDate = order.EditedDate,
                 Info = order.Info,
                 ProductId = order.ProductId,
+                Product = mapper.Map<ProductDTO>(order.Product),
                 ProductQuantity = order.ProductQuantity,
                 IsReady = order.IsReady,
                 IsServed = order.IsServed,
