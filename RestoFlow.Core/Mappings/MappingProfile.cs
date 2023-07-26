@@ -79,6 +79,10 @@ namespace RestoFlow.Api.Mappings
 
             CreateMap<Bill, CreateBillDTO>();
             CreateMap<CreateBillDTO, Bill>();
+
+            // Occupied Table
+            CreateMap<OccupiedTable, OccupiedTableDTO>();
+            CreateMap<OccupiedTableDTO, OccupiedTable>();
         }
     }
 }

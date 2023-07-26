@@ -1,5 +1,4 @@
 ﻿using RestoFlow.Core.Models.Product;
-using RestoFlow.Core.Models.User;
 
 namespace RestoFlow.Core.Models.Order
 {
@@ -10,7 +9,7 @@ namespace RestoFlow.Core.Models.Order
         public int ProductId { get; set; }
 
         public ProductDTO Product { get; set; }
-
+        public int? TableNumber { get; set; }
         public string Info { get; set; } = null!;
         public int ProductQuantity { get; set; }
 

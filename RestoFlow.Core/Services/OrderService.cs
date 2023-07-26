@@ -56,6 +56,7 @@ namespace RestoFlow.Core.Services
                 .Include(o => o.CreatedBy)
                 .Include(o => o.EditedBy)
                 .Include(o => o.Product)
+                .ThenInclude(p => p.Category)
                 .Where(order => !order.isDeleted && !order.IsReady).ToList();
 
             var result = orders.Select(order => MapOrder(order)).ToList();
@@ -81,7 +82,13 @@ namespace RestoFlow.Core.Services
 
         public async Task<List<OrderDTO>> GetOrdersByUserId(string userId)
         {
-            var orders = repository.All<Order>().Where(order => order.CreatedById == userId && !order.isDeleted && !order.IsServed).ToList();
+            var orders = repository.All<Order>()
+                .Where(order => order.CreatedById == userId && !order.isDeleted && !order.IsServed)
+                .Include(o => o.Product)
+                    .ThenInclude(p => p.Category)
+                .Include(o => o.OccupiedTables)
+                  .ThenInclude(ot => ot.Table)
+                .ToList();
             var result = orders.Select(order => MapOrder(order)).ToList();
             return result;
         }
@@ -171,6 +178,7 @@ namespace RestoFlow.Core.Services
                 EditedById = order.EditedById,
                 EditedDate = order.EditedDate,
                 Info = order.Info,
+                TableNumber = order?.OccupiedTables?.First()?.Table?.TableNumber,
                 ProductId = order.ProductId,
                 Product = mapper.Map<ProductDTO>(order.Product),
                 ProductQuantity = order.ProductQuantity,
