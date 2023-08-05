@@ -8,6 +8,8 @@ using RestoFlow.Core.Services;
 using RestoFlow.Infrastructure.Data;
 using RestoFlow.Infrastructure.Data.Models;
 
+using static RestoFlow.Infrastructure.Constants;
+
 namespace RestoFlow.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -65,6 +67,7 @@ namespace RestoFlow.Api.Controllers
                     return BadRequest(ModelState);
                 }
 
+                await userManager.AddToRoleAsync(user, "MinimalAccess");
                 return Ok(new { message = "Registration successful" });
             }
             catch (Exception ex)
@@ -99,7 +102,9 @@ namespace RestoFlow.Api.Controllers
             var userInDb = context.Users.FirstOrDefault(u => u.Email == model.Email);
             if (userInDb is null)
                 return Unauthorized();
-            var accessToken = tokenService.CreateToken(userInDb);
+
+            var roles = await userManager.GetRolesAsync(userInDb);
+            var accessToken = tokenService.CreateToken(userInDb, roles);
             await context.SaveChangesAsync();
 
             return Ok(new AuthResponseDTO

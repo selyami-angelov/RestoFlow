@@ -10,11 +10,11 @@ namespace RestoFlow.Core.Services
 {
     public class TokenService
     {
-        public string CreateToken(IdentityUser user)
+        public string CreateToken(IdentityUser user, IList<string> roles)
         {
             var expiration = DateTime.UtcNow.AddYears(10);
             var token = CreateJwtToken(
-                CreateClaims(user),
+                CreateClaims(user, roles),
                 CreateSigningCredentials(),
                 expiration
             );
@@ -32,7 +32,7 @@ namespace RestoFlow.Core.Services
                 signingCredentials: credentials
             );
 
-        private List<Claim> CreateClaims(IdentityUser user)
+        private List<Claim> CreateClaims(IdentityUser user, IList<string> roles)
         {
             try
             {
@@ -45,6 +45,12 @@ namespace RestoFlow.Core.Services
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email, user.Email)
                 };
+
+                foreach (var role in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
+
                 return claims;
             }
             catch (Exception e)

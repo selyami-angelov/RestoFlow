@@ -19,8 +19,6 @@ namespace RestoFlow.Api.Extensions
             services.AddScoped<IStorageService, StorageService>();
             services.AddScoped<IAwsCredentialsService, AwsCredentialsService>();
 
-
-
             return services;
         }
 

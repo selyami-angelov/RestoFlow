@@ -2,20 +2,41 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using RestoFlow.Api.Mappings;
+using RestoFlow.Infrastructure.Data.Models;
+using RestoFlow.Infrastructure.Data;
 
 using System.Reflection;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace RestoFlow.Api.Extensions
 {
     public static class ServiceConfigurationExtension
     {
-        public static IServiceCollection ConfigureServices(this IServiceCollection services)
+        public static IServiceCollection ConfigureServices(this IServiceCollection services, string connectionString)
         {
+            bool isLocalHost = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+
+            services.AddDbContext<RestoFlowDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+
+            })
+                .AddEntityFrameworkStores<RestoFlowDbContext>()
+                .AddDefaultTokenProviders();
+
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -54,7 +75,6 @@ namespace RestoFlow.Api.Extensions
             });
 
 
-            //add automapper
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
@@ -101,7 +121,25 @@ namespace RestoFlow.Api.Extensions
 
             });
 
+            services.ConfigureAndCreateRoles().Wait();
+
             return services;
+        }
+
+        private static async Task ConfigureAndCreateRoles(this IServiceCollection services)
+        {
+            var serviceProvider = services.BuildServiceProvider();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            var roles = new[] { "MinimalAccess", "Admin", "Waiter", "Cook" };
+            foreach (var role in roles)
+            {
+                var roleExists = await roleManager.RoleExistsAsync(role);
+                if (!roleExists)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
         }
     }
 }
