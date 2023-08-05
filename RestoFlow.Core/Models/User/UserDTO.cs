@@ -6,7 +6,7 @@ namespace RestoFlow.Core.Models.User
 {
     public class UserDTO
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = FirstNameRequiredErrorMessage)]
         [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength, ErrorMessage = FirstNameLengthErrorMessage)]
@@ -19,6 +19,8 @@ namespace RestoFlow.Core.Models.User
         [Required]
         [EmailAddress]
         public string Email { get; set; } = null!;
+
+        public IList<string>? Roles { get; set; }
 
     }
 }

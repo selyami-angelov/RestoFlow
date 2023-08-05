@@ -8,8 +8,6 @@ using RestoFlow.Core.Services;
 using RestoFlow.Infrastructure.Data;
 using RestoFlow.Infrastructure.Data.Models;
 
-using static RestoFlow.Infrastructure.Constants;
-
 namespace RestoFlow.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -111,6 +109,8 @@ namespace RestoFlow.Api.Controllers
             {
                 Username = userInDb.UserName,
                 Email = userInDb.Email,
+                FirstName = userInDb.FirstName,
+                LastName = userInDb.LastName,
                 Token = accessToken,
             });
         }
