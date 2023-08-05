@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Infrastructure.Data.Models;
 
-using static RestoFlow.Infrastructure.Constants;
-
 namespace RestoFlow.Api.Controllers
 {
-    [Route("api/bill")]
     [ApiController]
+    [Route("api/bill")]
     public class BillController : ControllerBase
     {
         private readonly IBillService billService;
@@ -23,6 +22,7 @@ namespace RestoFlow.Api.Controllers
 
         
         [HttpGet("create/{tableId}")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> CreateBill(int tableId)
         {
             var currentUser = userManager.GetUserAsync(User).Result;
@@ -31,9 +31,10 @@ namespace RestoFlow.Api.Controllers
         }
 
         [HttpGet("{date}")]
+        [Authorize(Roles = "Waiter")]
         public async Task<IActionResult> GetUserBillsByDate(string date)
         {
-            var currentUser = userManager.GetUserAsync(User).Result;
+            var currentUser =  userManager.GetUserAsync(User).Result;
             DateTime dateTime = DateTime.ParseExact(date, "yyyy-MM-dd'T'HH:mm:ss.fff'Z'", null);
             DateOnly dateOnly = new DateOnly(dateTime.Year, dateTime.Month, dateTime.Day);
 
@@ -42,6 +43,7 @@ namespace RestoFlow.Api.Controllers
         }
 
         [HttpGet("all/{date}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllBillsByDate(string date)
         {
             DateTime dateTime = DateTime.ParseExact(date, "yyyy-MM-dd'T'HH:mm:ss.fff'Z'", null);

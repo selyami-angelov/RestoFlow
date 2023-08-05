@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Amazon.Auth.AccessControlPolicy;
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Reservation;
@@ -7,6 +10,7 @@ namespace RestoFlow.Api.Controllers
 {
     [ApiController]
     [Route("api/reservations")]
+    [Authorize(Policy = "AdminOrWaiterPolicy")]
     public class ReservationController : ControllerBase
     {
         private readonly IReservationService reservationService;

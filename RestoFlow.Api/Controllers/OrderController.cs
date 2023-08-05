@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
@@ -26,13 +27,14 @@ namespace RestoFlow.Api.Controllers
         /// <param name="orderCreateDto">The order information for creation.</param>
         /// <returns>The created order.</returns>
         [HttpPost]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> CreateOrder([FromBody] OrderCreateDTO orderCreateDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-         
+
             var currentUser = userManager.GetUserAsync(User).Result;
             var createdOrder = await orderService.CreateOrder(orderCreateDto, currentUser);
             return CreatedAtAction(nameof(GetOrderById), new { orderId = createdOrder.Id }, createdOrder);
@@ -44,6 +46,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="orderId">The ID of the order to retrieve.</param>
         /// <returns>The order with the specified ID.</returns>
         [HttpGet("{orderId}")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> GetOrderById(int orderId)
         {
             var order = await orderService.GetOrderById(orderId);
@@ -60,6 +63,7 @@ namespace RestoFlow.Api.Controllers
         /// </summary>
         /// <returns>A list of orders.</returns>
         [HttpGet]
+        [Authorize(Policy = "CookOrAdminPolicy")]
         public async Task<IActionResult> GetOrders()
         {
             var orders = await orderService.GetOrders();
@@ -71,6 +75,7 @@ namespace RestoFlow.Api.Controllers
         /// </summary>
         /// <returns>A list of orders associated with the user.</returns>
         [HttpGet("my-orders")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> GetOrdersByUserId()
         {
             var user = userManager.GetUserAsync(User).Result;
@@ -84,6 +89,7 @@ namespace RestoFlow.Api.Controllers
         /// </summary>
         /// <returns>A list of orders associated with the user.</returns>
         [HttpGet("tables/{tableId}")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> GetUserOrdersByTableId(int tableId)
         {
             var user = userManager.GetUserAsync(User).Result;
@@ -99,6 +105,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="orderUpdateDto">The updated order information.</param>
         /// <returns>The updated order.</returns>
         [HttpPut("{orderId}")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> UpdateOrder(int orderId, [FromBody] OrderUpdateDTO orderUpdateDto)
         {
             if (!ModelState.IsValid)
@@ -123,6 +130,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="orderId">The ID of the order to mark as ready.</param>
         /// <returns>Returns an HTTP status code and the updated order if successful. Returns 404 Not Found if the order is not found.</returns>
         [HttpPut("ready/{orderId}")]
+        [Authorize(Policy = "CookOrAdminPolicy")]
         public async Task<IActionResult> MarkOrderAsReady(int orderId)
         {
 
@@ -141,6 +149,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="orderId">The ID of the order to mark as served.</param>
         /// <returns>Returns an HTTP status code and the updated order if successful. Returns 404 Not Found if the order is not found.</returns>
         [HttpPut("served/{orderId}")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> MarkOrderAsServed(int orderId)
         {
 
@@ -159,6 +168,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="orderId">The ID of the order to delete.</param>
         /// <returns>The deleted order.</returns>
         [HttpDelete("{orderId}")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> DeleteOrder(int orderId)
         {
             var deletedOrder = await orderService.DeleteOrder(orderId);

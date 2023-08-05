@@ -1,5 +1,6 @@
 ﻿using Amazon.Runtime.Internal.Endpoints.StandardLibrary;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
@@ -10,6 +11,7 @@ using System;
 
 namespace RestoFlow.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/products")]
     public class ProductController : ControllerBase
@@ -47,6 +49,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="id">The ID of the product.</param>
         /// <returns>The product with the specified ID.</returns>
         [HttpGet("{id}")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> GetProductById(int id)
         {
             var product = await productService.GetProductById(id);
@@ -74,6 +77,7 @@ namespace RestoFlow.Api.Controllers
         /// </summary>
         /// <returns>A list of products.</returns>
         [HttpGet("range")]
+        [Authorize(Policy = "AdminOrWaiterPolicy")]
         public async Task<IActionResult> GetProdctsByIds([FromQuery(Name = "ids")] string ids)
         {
             var productIds = ids.Split(',')
@@ -89,6 +93,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="productDto">The product data.</param>
         /// <returns>The created product.</returns>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateProduct([FromForm] ProductCreateDTO productDto)
         {
             if (!ModelState.IsValid)
@@ -135,6 +140,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="productDto">The updated product data.</param>
         /// <returns>The updated product.</returns>
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateProduct(int id, [FromForm] ProductEditDTO productDto)
         {
             if (!ModelState.IsValid)
@@ -198,6 +204,7 @@ namespace RestoFlow.Api.Controllers
         /// <param name="id">The ID of the product to delete.</param>
         /// <returns>The deleted product.</returns>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var deletedProduct = await productService.DeleteProduct(id);

@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Table;
 using RestoFlow.Infrastructure.Data.Models;
+using RestoFlow.Infrastructure.Migrations;
 
 namespace RestoFlow.Api.Controllers
 {
     [ApiController]
     [Route("api/tables")]
+    [Authorize(Policy = "AdminOrWaiterPolicy")]
     public class TableController : ControllerBase
     {
         private readonly ITableService tableService;

@@ -61,6 +61,16 @@ namespace RestoFlow.Api.Extensions
                 options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
                     .RequireAuthenticatedUser()
                     .Build();
+
+                options.AddPolicy("AdminOrWaiterPolicy", policy =>
+                {
+                    policy.RequireRole("Admin", "Waiter"); 
+                });
+                options.AddPolicy("CookOrAdminPolicy", policy =>
+                {
+                    policy.RequireRole("Admin", "Cook");
+                });
+
             });
 
             services.AddCors(options =>
