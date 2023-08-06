@@ -3,7 +3,10 @@
 using Microsoft.EntityFrameworkCore;
 
 using RestoFlow.Core.Contracts;
+using RestoFlow.Core.Models.Order;
+using RestoFlow.Core.Models.Product;
 using RestoFlow.Core.Models.Table;
+using RestoFlow.Core.Models.User;
 using RestoFlow.Infrastructure.Data.Models;
 
 using static RestoFlow.Infrastructure.Constants.Table;
@@ -140,16 +143,25 @@ namespace RestoFlow.Core.Services
 
         public async Task<List<OccupiedTableDTO>> GetOccupiedTables()
         {
-            var occupiedTables = await repository.All<Table>()
+            var tables = await repository.All<Table>()
             .Include(t => t.OccupiedTables)
-            .ThenInclude(ot => ot.User)
+                .ThenInclude(ot => ot.User)
+            .Include(t => t.OccupiedTables)
+                 .ThenInclude(ot => ot.Order)
+                 .ThenInclude(o => o.Product)
             .Where(t => t.OccupiedTables.Any())
-            .Select(t => new OccupiedTableDTO
-            {
-                TableId = t.Id,
-                UserName = $"{t.OccupiedTables.FirstOrDefault().User.FirstName} {t.OccupiedTables.FirstOrDefault().User.LastName}"
-            })
             .ToListAsync();
+
+            var occupiedTables = new List<OccupiedTableDTO>();
+
+            foreach (var table in tables)
+            {
+                var occupiedTable = new OccupiedTableDTO();
+                occupiedTable.Table = mapper.Map<TableDTO>(table);
+                occupiedTable.User = mapper.Map<UserDTO>(table.OccupiedTables[0].User);
+                occupiedTable.Orders = mapper.Map<List<OrderDTO>>(table.OccupiedTables.Select(ot => ot.Order));
+                occupiedTables.Add(occupiedTable);
+            }
 
             return occupiedTables;
         }

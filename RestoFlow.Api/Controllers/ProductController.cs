@@ -1,17 +1,12 @@
-﻿using Amazon.Runtime.Internal.Endpoints.StandardLibrary;
-
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.AwsS3;
 using RestoFlow.Core.Models.Product;
 
-using System;
-
 namespace RestoFlow.Api.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/products")]
     public class ProductController : ControllerBase

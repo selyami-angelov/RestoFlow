@@ -24,7 +24,7 @@ namespace RestoFlow.Infrastructure.Data
             DbSeeder.SeedCategories(modelBuilder);
             DbSeeder.SeedTables(modelBuilder);
             DbSeeder.SeedProducts(modelBuilder);
-            DbSeeder.SeedOrders(modelBuilder); 
+            //DbSeeder.SeedOrders(modelBuilder); 
             DbSeeder.SeedOccupiedTables(modelBuilder);
             //DbSeeder.SeedReservations(modelBuilder);
             //DbSeeder.SeedReservationTables(modelBuilder);
