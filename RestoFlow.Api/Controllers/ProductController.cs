@@ -187,7 +187,7 @@ namespace RestoFlow.Api.Controllers
             }
 
             // Update the product in the database
-            string objectUrl = $"https://resto-flow.s3.eu-central-1.amazonaws.com/{objName}";
+            string objectUrl = productDto.File == null ? existingProduct.Img : $"https://resto-flow.s3.eu-central-1.amazonaws.com/{objName}";
             await productService.UpdateProduct(id, productDto, objectUrl);
 
             return Ok(existingProduct);
