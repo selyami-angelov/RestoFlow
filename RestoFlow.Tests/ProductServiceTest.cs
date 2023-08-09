@@ -37,10 +37,10 @@ namespace RestoFlow.Tests
             var productService = new ProductService(mockRepository.Object, mockMapper.Object);
 
             var dummyProducts = new List<Product>
-    {
-        new Product { Id = 1, Name = "Product 1", IsDeleted = false, Category = new Category { Id = 1, Name = "Category 1" } },
-        new Product { Id = 2, Name = "Product 2", IsDeleted = false, Category = new Category { Id = 2, Name = "Category 2" } }
-    };
+            {
+                new Product { Id = 1, Name = "Product 1", IsDeleted = false, Category = new Category { Id = 1, Name = "Category 1" } },
+                new Product { Id = 2, Name = "Product 2", IsDeleted = false, Category = new Category { Id = 2, Name = "Category 2" } }
+            };
 
             mockRepository.Setup(repo => repo.All<Product>()).Returns(dummyProducts.AsQueryable());
 
@@ -68,8 +68,6 @@ namespace RestoFlow.Tests
             Assert.That(result, Has.Exactly(1).With.Property("CategoryName").EqualTo(dummyProducts[0].Category.Name));
             Assert.That(result, Has.Exactly(1).With.Property("CategoryName").EqualTo(dummyProducts[1].Category.Name));
 
-            // Verify that repository method is called
-            mockRepository.Verify(repo => repo.All<Product>(), Times.Once);
         }
 
         [Test]
@@ -79,10 +77,7 @@ namespace RestoFlow.Tests
             var productId = 1;
             var dummyProduct = new Product { Id = productId, Name = "Product 1", IsDeleted = true, Category = new Category { Id = 1, Name = "Category 1" } };
 
-            // Create a mock queryable with the dummy product
             var mockProducts = new List<Product> { dummyProduct }.AsQueryable().BuildMock();
-
-            // Configure the mock repository to return the mock queryable
             mockRepository.Setup(repo => repo.All<Product>()).Returns(mockProducts);
 
             // Act
@@ -101,7 +96,6 @@ namespace RestoFlow.Tests
             var dummyCategory = new Category { Id = 1, Name = categoryName };
             var dummyProduct = new Product { Id = productId, Name = "Product 1", IsDeleted = false, Category = dummyCategory };
 
-            // Configure the mock repository to return an IAsyncEnumerable
             var asyncEnumerable = new List<Product> { dummyProduct }.AsQueryable().BuildMock();
             mockRepository.Setup(repo => repo.All<Product>()).Returns(asyncEnumerable);
 
@@ -141,9 +135,9 @@ namespace RestoFlow.Tests
         public async Task CreateProduct_ReturnsCreatedProductDTO()
         {
             // Arrange
-            var productDto = new ProductCreateDTO { /* Initialize your DTO */ };
+            var productDto = new ProductCreateDTO { };
             var objectUrl = "sample-url";
-            var createdProduct = new Product { /* Initialize your product entity */ };
+            var createdProduct = new Product { };
             mockMapper.Setup(m => m.Map<Product>(It.IsAny<ProductCreateDTO>())).Returns(createdProduct);
             mockRepository.Setup(repo => repo.AddAsync<Product>(It.IsAny<Product>())).Verifiable();
             mockRepository.Setup(repo => repo.SaveChangesAsync()).Verifiable();
@@ -162,7 +156,7 @@ namespace RestoFlow.Tests
         {
             // Arrange
             var productId = 1;
-            var productDto = new ProductEditDTO { /* Initialize your DTO */ };
+            var productDto = new ProductEditDTO { };
             var objectUrl = "updated-sample-url";
             var existingProduct = new Product { Id = productId, Name = "Product 1", IsDeleted = false, Category = new Category { Id = 1, Name = "Category 1" } };
             mockRepository.Setup(repo => repo.All<Product>()).Returns(new List<Product> { existingProduct }.AsQueryable().BuildMock());

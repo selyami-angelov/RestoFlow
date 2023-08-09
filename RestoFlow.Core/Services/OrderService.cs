@@ -102,18 +102,10 @@ namespace RestoFlow.Core.Services
                 return null;
             }
 
-            // with auth user
-            //existingOrder.ProductId = orderUpdateDto.ProductId;
-            //existingOrder.Info = orderUpdateDto.Info;
-            //existingOrder.EditedById = user.Id;
-            //existingOrder.EditedBy = user;
-            //existingOrder.IsServed = orderUpdateDto.IsServed;
-            //existingOrder.EditedDate = DateTime.UtcNow;
-
-            // test 
             existingOrder.ProductId = orderUpdateDto.ProductId;
             existingOrder.Info = orderUpdateDto.Info;
-            existingOrder.EditedById = "b08ba7ee-0960-4656-baf4-980b1d6b88df";
+            existingOrder.EditedById = user.Id;
+            existingOrder.EditedBy = user;
             existingOrder.IsServed = orderUpdateDto.IsServed;
             existingOrder.EditedDate = DateTime.UtcNow;
 

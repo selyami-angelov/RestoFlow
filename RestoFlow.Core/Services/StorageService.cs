@@ -3,6 +3,8 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 
+using Microsoft.Extensions.Configuration;
+
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.AwsS3;
 
@@ -14,6 +16,13 @@ namespace RestoFlow.Core.Services
 {
     public class StorageService : IStorageService
     {
+        private IConfiguration @object;
+
+        public StorageService(IAmazonS3 object1, IConfiguration @object)
+        {
+            this.@object = @object;
+        }
+
         public async Task<S3ResponseDTO> UploadFileAsync(S3ObjectCreateDTO s3obj, AwsCredentials awsCredentials)
         {
             var credentials = new BasicAWSCredentials(awsCredentials.AwsKey, awsCredentials.AwsSecretKey);
