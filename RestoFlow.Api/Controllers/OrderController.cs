@@ -146,6 +146,8 @@ namespace RestoFlow.Api.Controllers
                 return NotFound();
             }
 
+            await orderHubContext.Clients.All.SendAsync("OrderIsReady", updatedOrder);
+
             return Ok(updatedOrder);
         }
 

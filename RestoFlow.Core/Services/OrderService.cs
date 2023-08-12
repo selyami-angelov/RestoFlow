@@ -53,6 +53,7 @@ namespace RestoFlow.Core.Services
         public async Task<List<OrderDTO>> GetOrders()
         {
             var orders = repository.All<Order>()
+                .Include(o => o.OccupiedTables)
                 .Include(o => o.CreatedBy)
                 .Include(o => o.EditedBy)
                 .Include(o => o.Product)
@@ -83,11 +84,11 @@ namespace RestoFlow.Core.Services
         public async Task<List<OrderDTO>> GetOrdersByUserId(string userId)
         {
             var orders = repository.All<Order>()
-                .Where(order => order.CreatedById == userId && !order.isDeleted && !order.IsServed)
                 .Include(o => o.Product)
                     .ThenInclude(p => p.Category)
                 .Include(o => o.OccupiedTables)
                   .ThenInclude(ot => ot.Table)
+                .Where(order => order.CreatedById == userId && !order.isDeleted && !order.IsServed)
                 .ToList();
             var result = orders.Select(order => MapOrder(order)).ToList();
             return result;
@@ -170,7 +171,7 @@ namespace RestoFlow.Core.Services
                 EditedById = order.EditedById,
                 EditedDate = order.EditedDate,
                 Info = order.Info,
-                TableNumber = order?.OccupiedTables?.First()?.Table?.TableNumber,
+                TableNumber = order.OccupiedTables.Any() ? order?.OccupiedTables?.First()?.Table?.TableNumber : 0,
                 ProductId = order.ProductId,
                 Product = mapper.Map<ProductDTO>(order.Product),
                 ProductQuantity = order.ProductQuantity,

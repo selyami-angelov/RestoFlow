@@ -8,5 +8,10 @@ namespace RestoFlow.Api.Hubs
         {
             await Clients.All.SendAsync("NewOrderCreated", newOrder);
         }
+
+        public async Task OrderIsReady(object order)
+        {
+            await Clients.All.SendAsync("OrderIsReady", order);
+        }
     }
 }
