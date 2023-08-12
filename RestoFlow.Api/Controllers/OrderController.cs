@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
+using RestoFlow.Api.Hubs;
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.Order;
 using RestoFlow.Infrastructure.Data.Models;
@@ -14,11 +16,14 @@ namespace RestoFlow.Api.Controllers
     {
         private readonly IOrderService orderService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IHubContext<OrderHub> orderHubContext;
 
-        public OrderController(IOrderService _orderService, UserManager<ApplicationUser> _userManager)
+
+        public OrderController(IOrderService _orderService, UserManager<ApplicationUser> _userManager, IHubContext<OrderHub> _orderHubContext)
         {
             orderService = _orderService;
             userManager = _userManager;
+            orderHubContext = _orderHubContext;
         }
 
         /// <summary>
@@ -37,6 +42,7 @@ namespace RestoFlow.Api.Controllers
 
             var currentUser = userManager.GetUserAsync(User).Result;
             var createdOrder = await orderService.CreateOrder(orderCreateDto, currentUser);
+            await orderHubContext.Clients.All.SendAsync("NewOrderCreated", createdOrder);
             return CreatedAtAction(nameof(GetOrderById), new { orderId = createdOrder.Id }, createdOrder);
         }
 

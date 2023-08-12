@@ -22,6 +22,7 @@ namespace RestoFlow.Api.Extensions
         {
             bool isLocalHost = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 
+            services.AddSignalR();
             services.AddDbContext<RestoFlowDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
@@ -132,6 +133,10 @@ namespace RestoFlow.Api.Extensions
             });
 
             services.ConfigureAndCreateRoles().Wait();
+
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
+            services.AddServices();
 
             return services;
         }
