@@ -3,8 +3,6 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 
-using Microsoft.Extensions.Configuration;
-
 using RestoFlow.Core.Contracts;
 using RestoFlow.Core.Models.AwsS3;
 
@@ -16,12 +14,6 @@ namespace RestoFlow.Core.Services
 {
     public class StorageService : IStorageService
     {
-        private IConfiguration @object;
-
-        public StorageService(IAmazonS3 object1, IConfiguration @object)
-        {
-            this.@object = @object;
-        }
 
         public async Task<S3ResponseDTO> UploadFileAsync(S3ObjectCreateDTO s3obj, AwsCredentials awsCredentials)
         {
@@ -126,7 +118,6 @@ namespace RestoFlow.Core.Services
                 BucketName = s3obj.BucketName,
                 Key = s3obj.Name,
                 Expires = DateTime.UtcNow.AddHours(8),
-                // Set any additional access restrictions or permissions as needed
             };
 
             var preSignedUrl =  client.GetPreSignedURL(getPreSignedUrlRequest);
