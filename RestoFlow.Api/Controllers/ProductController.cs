@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Amazon.Runtime.Internal.Endpoints.StandardLibrary;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using RestoFlow.Core.Contracts;
@@ -52,17 +54,6 @@ namespace RestoFlow.Api.Controllers
             {
                 return NotFound();
             }
-
-            var s3Obj = new S3ObjectCreateDTO()
-            {
-                BucketName = "resto-flow",
-                Name = product.Img,
-            };
-
-            var cred = isLocalHost ? awsCredentialsService.GetAwsCredentialsFromEnvironment() : awsCredentialsService.GetAwsCredentialsFromAppSettings();
-
-            var result = storageService.GeneratePresignedUrl(s3Obj, cred);
-            product.Img = result.Result;
 
             return Ok(product);
         }
@@ -171,7 +162,9 @@ namespace RestoFlow.Api.Controllers
 
                     if (!string.IsNullOrEmpty(existingProduct.Img))
                     {
-                        string objectKey = existingProduct.Img.TrimStart('/');
+                        int lastSlashIndex = existingProduct.Img.LastIndexOf('/');
+                        string objectKey = existingProduct.Img.Substring(lastSlashIndex + 1);
+
                         var deleteResult = await storageService.DeleteFileAsync(objectKey, "resto-flow", cred);
                         if (deleteResult.StatusCode != 200)
                         {
@@ -206,6 +199,16 @@ namespace RestoFlow.Api.Controllers
             if (deletedProduct == null)
             {
                 return NotFound();
+            }
+
+            var cred = isLocalHost ? awsCredentialsService.GetAwsCredentialsFromEnvironment() : awsCredentialsService.GetAwsCredentialsFromAppSettings();
+            int lastSlashIndex = deletedProduct.Img.LastIndexOf('/');
+            string objectKey = deletedProduct.Img.Substring(lastSlashIndex + 1);
+            var deleteResult = await storageService.DeleteFileAsync(objectKey, "resto-flow", cred);
+
+            if (deleteResult.StatusCode != 200)
+            {
+                return StatusCode(deleteResult.StatusCode, deleteResult.Message);
             }
 
             return Ok(deletedProduct);
