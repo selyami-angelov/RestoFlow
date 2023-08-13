@@ -30,4 +30,5 @@ app.UseEndpoints(endpoints =>
     endpoints.MapHub<OrderHub>("/orderHub");
     endpoints.MapControllers();
 });
+
 app.Run();
